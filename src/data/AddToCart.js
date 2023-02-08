@@ -1,0 +1,125 @@
+import React, { useState } from 'react';
+// import styled from 'styled-components';
+// import { Link } from 'react-router-dom';
+// import { FaCheck } from 'react-icons/fa';
+import { useCartContext } from '../context/cart_context';
+import AmountButtons from './AmountButtons';
+
+const AddToCart = ({ products }) => {
+const {addToCart} = useCartContext()
+  const { id, stock } = products
+  console.log("id    ", id)
+
+  const [amount, setAmount] = useState(1)
+
+  const increase = () => {
+    setAmount((oldAmount) => {
+      let tempAmount = oldAmount + 1
+      if (tempAmount > stock) {
+        tempAmount = stock
+      }
+      return tempAmount
+    })
+  }
+  const decrease = () => {
+    setAmount((oldAmount) => {
+      let tempAmount = oldAmount - 1
+      if (tempAmount < 1) {
+        tempAmount = 1
+      }
+      return tempAmount
+    })
+  }
+
+  return (
+    <Wrapper>
+      {/* <div className='colors'>
+        <span> colors : </span>
+        <div>
+          {colors.map((color, index) => {
+            return (
+              <button
+                key={index}
+                style={{ background: color }}
+                className={`${
+                  mainColor === color ? 'color-btn active' : 'color-btn'
+                }`}
+                onClick={() => setMainColor(color)}
+              >
+                {mainColor === color ? <FaCheck /> : null}
+              </button>
+            )
+          })}
+        </div>
+      </div> */}
+      <div className='btn-cont'>
+        <div className='quantity'>
+        <p>Quantity: </p>
+        <AmountButtons
+          amount={amount}
+          increase={increase}
+          decrease={decrease}
+        />
+        </div>
+       {products.stock > 0 && <div className='buy' onClick={() => addToCart(id, amount, products)}>Add to cart</div>}
+        </div>
+    </Wrapper>
+  )
+}
+
+const Wrapper = styled.section`
+.quantity{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  p{
+    font-weight: 700;
+  }
+}
+  .colors {
+    display: grid;
+    grid-template-columns: 125px 1fr;
+    align-items: center;
+    margin-bottom: 1rem;
+    span {
+      text-transform: capitalize;
+      font-weight: 700;
+    }
+    div {
+      display: flex;
+    }
+  }
+  .color-btn {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: #222;
+    margin-right: 0.5rem;
+    border: none;
+    cursor: pointer;
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      font-size: 0.75rem;
+      color: var(--clr-white);
+    }
+
+    
+  }
+  .active {
+    opacity: 1;
+  }
+  .btn-container {
+    margin-top: 2rem;
+  }
+
+  .btn {
+    margin-top: 1rem;
+    width: 140px;
+  }
+`
+export default AddToCart
