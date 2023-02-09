@@ -1,3 +1,4 @@
+import React from 'react';
 import { useCartContext } from "../../data/cart_context";
 import BreadcrumbCom from "../BreadcrumbCom";
 import EmptyCardError from "../EmptyCardError";

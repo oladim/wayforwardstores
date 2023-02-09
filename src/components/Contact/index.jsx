@@ -1,3 +1,4 @@
+import React from 'react';
 import InputCom from "../Helpers/InputCom";
 import PageTitle from "../Helpers/PageTitle";
 import Layout from "../Partials/Layout";
@@ -58,11 +59,11 @@ export default function Contact() {
                     Phone
                   </p>
                   <p className="text-[15px] text-black leading-[30px] text-center">
-                    +(323) 9847 3847 383
+                    +(234) 8066932357
                   </p>
-                  <p className="text-[15px] text-black leading-[30px] text-center">
+                  {/* <p className="text-[15px] text-black leading-[30px] text-center">
                     +(434) 5466 5467 443
-                  </p>
+                  </p> */}
                 </div>
                 <div className="xl:w-1/2 w-full h-[196px] flex flex-col item justify-center bg-[#D3EFFF] p-5">
                   <div className="flex justify-center mb-3 ">
@@ -105,11 +106,11 @@ export default function Contact() {
                     Email
                   </p>
                   <p className="text-[15px] text-black leading-[30px] text-center">
-                    Demoemail@gmail.com
+                    contact@wayforwardstores.com
                   </p>
-                  <p className="text-[15px] text-black leading-[30px] text-center">
+                  {/* <p className="text-[15px] text-black leading-[30px] text-center">
                     rafiqulislamsuvobd@gmail.com
-                  </p>
+                  </p> */}
                 </div>
               </div>
               <div className="p-5 flex flex-col justify-between w-full bg-[#E7F2EC]">
@@ -135,8 +136,8 @@ export default function Contact() {
                       Address
                     </h1>
                     <p className="text-[15px] text-qblack leading-[30px]">
-                      4517 Washington Ave. Manchester, Road 2342, <br />
-                      Kentucky 39495
+                      Samuel Ademulegun Street, Surulere <br />
+                      Lagos, Nigeria
                     </p>
                   </div>
                 </div>
@@ -177,7 +178,7 @@ export default function Contact() {
                 <div className="mb-4">
                   <InputCom
                     label="Frist Name*"
-                    placeholder="Demo Name"
+                    placeholder="Full Name"
                     name="first_name"
                     inputClasses="h-[50px]"
                   />
@@ -185,7 +186,7 @@ export default function Contact() {
                 <div className="mb-4">
                   <InputCom
                     label="Email Address*"
-                    placeholder="info@quomodosoft.com"
+                    placeholder="contact@wayforwardstores.com"
                     name="email"
                     inputClasses="h-[50px]"
                   />

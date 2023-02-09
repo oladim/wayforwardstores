@@ -1,3 +1,4 @@
+import React from 'react';
 export default function Star({ w = "18", h = "17" }) {
   return (
     <svg

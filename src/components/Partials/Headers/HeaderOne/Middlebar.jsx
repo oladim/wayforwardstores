@@ -1,3 +1,4 @@
+import React from 'react';
 import { useCartContext } from "../../../../data/cart_context";
 import Cart from "../../../Cart";
 import ThinBag from "../../../Helpers/icons/ThinBag";

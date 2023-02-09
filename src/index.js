@@ -1,6 +1,7 @@
 import { Auth0Provider } from "@auth0/auth0-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import React from 'react';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";

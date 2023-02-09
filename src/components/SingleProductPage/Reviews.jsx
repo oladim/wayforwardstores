@@ -1,3 +1,4 @@
+import React from "react";
 import Star from "../Helpers/icons/Star";
 import InputCom from "../Helpers/InputCom";
 import LoaderStyleOne from "../Helpers/Loaders/LoaderStyleOne";

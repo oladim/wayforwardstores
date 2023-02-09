@@ -1,3 +1,4 @@
+import React from 'react';
 import { useCartContext } from "../../../data/cart_context";
 import Compair from "../icons/Compair";
 import QuickViewIco from "../icons/QuickViewIco";

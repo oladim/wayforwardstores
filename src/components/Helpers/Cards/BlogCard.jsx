@@ -1,12 +1,12 @@
+import React from 'react';
 import { Link } from "react-router-dom";
 
 export default function BlogCard({ className, datas }) {
   console.log(datas);
   return (
     <div
-      className={`blog-card-wrapper w-full border border-[#D3D3D3] ${
-        className || ""
-      }`}
+      className={`blog-card-wrapper w-full border border-[#D3D3D3] ${className || ""
+        }`}
     >
       <div className="img w-full h-[340px]">
         <img

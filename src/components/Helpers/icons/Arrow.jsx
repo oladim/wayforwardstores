@@ -1,3 +1,4 @@
+import React from 'react';
 export default function Arrow({
   className,
   width = "5.78538",

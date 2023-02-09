@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import InputCom from "../../../Helpers/InputCom";
 
 export default function ProfileTab() {

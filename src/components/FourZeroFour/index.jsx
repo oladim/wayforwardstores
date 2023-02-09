@@ -1,3 +1,4 @@
+import React from 'react';
 import BreadcrumbCom from "../BreadcrumbCom";
 import Layout from "../Partials/Layout";
 import ErrorThumb from "./ErrorThumb";

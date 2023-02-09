@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import DiscountBanner from "../Home/DiscountBanner";
 import Drawer from "../Mobile/Drawer";
 import Footer from "./Footers/Footer";

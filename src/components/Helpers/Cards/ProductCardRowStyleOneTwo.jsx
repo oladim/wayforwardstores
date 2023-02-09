@@ -1,3 +1,4 @@
+import React from 'react';
 import Compair from "../icons/Compair";
 import QuickViewIco from "../icons/QuickViewIco";
 import ThinLove from "../icons/ThinLove";
@@ -6,9 +7,8 @@ export default function ProductCardRowStyleOneTwo({ className, datas }) {
   return (
     <div
       data-aos="fade-left"
-      className={`product-row-card-style-one-two w-full h-[250px] bg-white group relative overflow-hidden ${
-        className || ""
-      }`}
+      className={`product-row-card-style-one-two w-full h-[250px] bg-white group relative overflow-hidden ${className || ""
+        }`}
     >
       <div className="flex space-x-5 items-center w-full h-full p-[16px]">
         <div className="w-1/3 h-full">

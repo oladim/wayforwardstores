@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 import "react-input-range/lib/css/index.css";
 import { useGlobalContext } from "../../data/context";
 import BreadcrumbCom from "../BreadcrumbCom";

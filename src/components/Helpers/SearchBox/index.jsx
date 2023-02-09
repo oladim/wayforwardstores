@@ -1,10 +1,10 @@
+import React from 'react';
 export default function SearchBox({ className }) {
   return (
     <>
       <div
-        className={`w-full h-full flex items-center  border border-qgray-border bg-white ${
-          className || ""
-        }`}
+        className={`w-full h-full flex items-center  border border-qgray-border bg-white ${className || ""
+          }`}
       >
         <div className="flex-1 bg-red-500 h-full">
           <form action="#" className="h-full">

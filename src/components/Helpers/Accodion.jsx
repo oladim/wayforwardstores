@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 
 export default function Accodion({ init, title, des }) {
   const [collaps, setCollaps] = useState(init || false);
@@ -7,9 +7,8 @@ export default function Accodion({ init, title, des }) {
   };
   return (
     <div
-      className={`accordion-item w-full bg-white overflow-hidden ${
-        collaps ? "bg-qyellow" : "bg-white"
-      }`}
+      className={`accordion-item w-full bg-white overflow-hidden ${collaps ? "bg-qyellow" : "bg-white"
+        }`}
     >
       <button
         onClick={handler}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Arrow from "../../../Helpers/icons/Arrow";
 
@@ -25,9 +25,8 @@ export default function Navbar({ className }) {
 
   return (
     <div
-      className={`nav-widget-wrapper w-full bg-qh2-green h-[60px] relative z-30  ${
-        className || ""
-      }`}
+      className={`nav-widget-wrapper w-full bg-qh2-green h-[60px] relative z-30  ${className || ""
+        }`}
     >
       <div className="container-x mx-auto h-full">
         <div className="w-full h-full relative">

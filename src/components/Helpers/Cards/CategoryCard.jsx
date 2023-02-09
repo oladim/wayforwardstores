@@ -1,3 +1,4 @@
+import React from 'react';
 export default function CategoryCard({ background, title, brands = [] }) {
   return (
     <div

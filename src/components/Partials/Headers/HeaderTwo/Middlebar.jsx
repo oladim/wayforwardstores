@@ -1,3 +1,4 @@
+import React from 'react';
 import Cart from "../../../Cart";
 import Compair from "../../../Helpers/icons/Compair";
 import ThinBag from "../../../Helpers/icons/ThinBag";

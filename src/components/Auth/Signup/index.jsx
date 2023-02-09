@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import InputCom from "../../Helpers/InputCom";
 import Layout from "../../Partials/Layout";
 import Thumbnail from "./Thumbnail";

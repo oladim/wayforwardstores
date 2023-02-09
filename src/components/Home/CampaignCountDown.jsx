@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from "react-router-dom";
 import CountDown from "../Helpers/CountDown";
 
@@ -109,10 +110,9 @@ export default function CampaignCountDown({
               data-aos="fade-left"
               className="download-app flex-1 lg:h-full h-[430px] xl:p-12 p-5"
               style={{
-                background: `url(${
-                  counterbg ||
+                background: `url(${counterbg ||
                   `${process.env.PUBLIC_URL}/assets/images/download-app-cover.png`
-                }) no-repeat`,
+                  }) no-repeat`,
                 backgroundSize: "cover",
               }}
             >

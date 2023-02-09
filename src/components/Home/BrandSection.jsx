@@ -1,3 +1,4 @@
+import React from 'react';
 export default function BrandSection({ className, sectionTitle }) {
   return (
     <div data-aos="fade-up" className={`w-full ${className || ""}`}>

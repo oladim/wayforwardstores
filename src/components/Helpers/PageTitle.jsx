@@ -1,3 +1,4 @@
+import React from 'react';
 import BreadcrumbCom from "../BreadcrumbCom";
 
 export default function PageTitle({ title, breadcrumb = [] }) {

@@ -1,3 +1,4 @@
+import React from 'react';
 import ProductCardStyleOneTwo from "./Cards/ProductCardStyleOneTwo";
 import DataIteration from "./DataIteration";
 import ViewMoreTitle from "./ViewMoreTitle";

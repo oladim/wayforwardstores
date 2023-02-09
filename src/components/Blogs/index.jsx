@@ -1,3 +1,4 @@
+import React from 'react';
 import blog from "../../data/blogs.json";
 import BlogCard from "../Helpers/Cards/BlogCard";
 import DataIteration from "../Helpers/DataIteration";

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 import { useGlobalContext } from "../../data/context";
 import CategoryCard from "./Cards/CategoryCard";
 import ProductCardStyleOne from "./Cards/ProductCardStyleOne";

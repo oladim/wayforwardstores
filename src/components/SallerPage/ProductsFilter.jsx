@@ -1,3 +1,4 @@
+import React from 'react';
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import Checkbox from "../Helpers/Checkbox";
@@ -16,9 +17,8 @@ export default function ProductsFilter({
   return (
     <>
       <div
-        className={`filter-widget w-full fixed lg:relative left-0 top-0 h-screen z-10 lg:h-auto overflow-y-scroll lg:overflow-y-auto bg-white px-[30px] pt-[40px] ${
-          className || ""
-        }  ${filterToggle ? "block" : "hidden lg:block"}`}
+        className={`filter-widget w-full fixed lg:relative left-0 top-0 h-screen z-10 lg:h-auto overflow-y-scroll lg:overflow-y-auto bg-white px-[30px] pt-[40px] ${className || ""
+          }  ${filterToggle ? "block" : "hidden lg:block"}`}
       >
         <div className="filter-subject-item pb-10 border-b border-qgray-border">
           <div className="subject-title mb-[30px]">
@@ -665,51 +665,46 @@ export default function ProductsFilter({
             <div className="flex space-x-[5px] flex-wrap">
               <span
                 onClick={() => filterstorage("64GB")}
-                className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${
-                  storage === "64GB"
+                className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "64GB"
                     ? "bg-qyellow text-qblack border-none"
                     : " text-qgray "
-                }`}
+                  }`}
               >
                 64GB
               </span>
               <span
                 onClick={() => filterstorage("128GB")}
-                className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${
-                  storage === "128GB"
+                className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "128GB"
                     ? "bg-qyellow text-qblack border-none"
                     : " text-qgray "
-                }`}
+                  }`}
               >
                 128GB
               </span>
               <span
                 onClick={() => filterstorage("256GB")}
-                className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${
-                  storage === "256GB"
+                className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "256GB"
                     ? "bg-qyellow text-qblack border-none"
                     : " text-qgray "
-                }`}
+                  }`}
               >
                 256GB
               </span>
               <span
                 onClick={() => filterstorage("512GB")}
-                className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${
-                  storage === "512GB"
+                className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "512GB"
                     ? "bg-qyellow text-qblack border-none"
                     : " text-qgray "
-                }`}
+                  }`}
               >
                 512GB
               </span>
               <span
                 onClick={() => filterstorage("1024GB")}
-                className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${
-                  storage === "1024GB"
+                className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "1024GB"
                     ? "bg-qyellow text-qblack border-none"
                     : " text-qgray "
-                }`}
+                  }`}
               >
                 1024GB
               </span>

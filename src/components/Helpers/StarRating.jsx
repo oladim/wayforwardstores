@@ -1,3 +1,4 @@
+import React from 'react';
 const StarRating = ({ rating, ratingHandler, hoverRating, hoverHandler }) => (
   <div className="star-rating flex">
     {[...Array(5)].map((star, index) => {

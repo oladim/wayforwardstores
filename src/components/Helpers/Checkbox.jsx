@@ -1,3 +1,4 @@
+import React from 'react';
 export default function Checkbox(props) {
   const { id, name, handleChange, checked, className } = props;
 

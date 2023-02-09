@@ -1,3 +1,4 @@
+import React from 'react';
 import Accodion from "../Helpers/Accodion";
 import InputCom from "../Helpers/InputCom";
 import PageTitle from "../Helpers/PageTitle";
@@ -85,7 +86,7 @@ humour, or randomised words"
                   <div className="mb-4">
                     <InputCom
                       label="Frist Name*"
-                      placeholder="Demo Name"
+                      placeholder="Full Name"
                       name="first_name"
                       inputClasses="h-[50px]"
                     />
@@ -93,7 +94,7 @@ humour, or randomised words"
                   <div className="mb-4">
                     <InputCom
                       label="Email Address*"
-                      placeholder="info@quomodosoft.com"
+                      placeholder="account@domain.com"
                       name="email"
                       inputClasses="h-[50px]"
                     />

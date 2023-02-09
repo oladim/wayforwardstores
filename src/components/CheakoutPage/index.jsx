@@ -1,8 +1,13 @@
+import React from 'react';
+import { useCartContext } from '../../data/cart_context';
+import { useUserContext } from '../../data/user_context';
 import InputCom from "../Helpers/InputCom";
 import PageTitle from "../Helpers/PageTitle";
 import Layout from "../Partials/Layout";
 
 export default function CheakoutPage() {
+  const { cart, total_amount } = useCartContext();
+  const { loginWithRedirect, myUser, logout } = useUserContext();
   return (
     <Layout childrenClasses="pt-0 pb-0">
       <div className="checkout-page-wrapper w-full bg-white pb-[60px]">
@@ -22,13 +27,14 @@ export default function CheakoutPage() {
                 <div className="sm:w-1/2 w-full mb-5 h-[70px]">
                   <a href="#">
                     <div className="w-full h-full bg-[#F6F6F6] text-qblack flex justify-center items-center">
-                      <span className="text-[15px] font-medium">
-                        Log into your Account
-                      </span>
+                      {myUser ? <span className="text-[15px] font-medium cursor-pointer" onClick={() => logout({ returnTo: window.location.origin })}>
+                        Logout
+                      </span> : <span onClick={loginWithRedirect}>Login to your account</span>}
+
                     </div>
                   </a>
                 </div>
-                <div className="flex-1 h-[70px]">
+                {/* <div className="flex-1 h-[70px]">
                   <a href="#">
                     <div className="w-full h-full bg-[#F6F6F6] text-qblack flex justify-center items-center">
                       <span className="text-[15px] font-medium">
@@ -36,7 +42,7 @@ export default function CheakoutPage() {
                       </span>
                     </div>
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="w-full lg:flex lg:space-x-[30px]">
@@ -50,14 +56,14 @@ export default function CheakoutPage() {
                       <div className="sm:w-1/2  mb-5 sm:mb-0">
                         <InputCom
                           label="First Name*"
-                          placeholder="Demo Name"
+                          placeholder="First Name"
                           inputClasses="w-full h-[50px]"
                         />
                       </div>
                       <div className="flex-1">
                         <InputCom
                           label="Last Name*"
-                          placeholder="Demo Name"
+                          placeholder="Last Name"
                           inputClasses="w-full h-[50px]"
                         />
                       </div>
@@ -66,14 +72,14 @@ export default function CheakoutPage() {
                       <div className="w-1/2">
                         <InputCom
                           label="Email Address*"
-                          placeholder="demoemial@gmail.com"
+                          placeholder="account@domain.com"
                           inputClasses="w-full h-[50px]"
                         />
                       </div>
                       <div className="flex-1">
                         <InputCom
                           label="Phone Number*"
-                          placeholder="012 3  *******"
+                          placeholder="+234-80*********"
                           inputClasses="w-full h-[50px]"
                         />
                       </div>
@@ -118,7 +124,7 @@ export default function CheakoutPage() {
                         </h1>
                         <div className="w-full h-[50px] border border-[#EDEDED] px-5 flex justify-between items-center">
                           <span className="text-[13px] text-qgraytwo">
-                            Miyami Town
+                            Town
                           </span>
                           <span>
                             <svg
@@ -193,7 +199,29 @@ export default function CheakoutPage() {
                   </div>
                   <div className="product-list w-full mb-[30px]">
                     <ul className="flex flex-col space-y-5">
-                      <li>
+                      {cart.map((item) => {
+                        return <li key={item.id}>
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h4 className="text-[15px] text-qblack mb-2.5">
+                                {item.title}
+                                <sup className="text-[13px] text-qgray ml-2 mt-2">
+                                  x{item.amount}
+                                </sup>
+                              </h4>
+                              {/* <p className="text-[13px] text-qgray">
+                                64GB, Black, 44mm, Chain Belt
+                              </p> */}
+                            </div>
+                            <div>
+                              <span className="text-[15px] text-qblack font-medium">
+                                {(item.price * item.amount).toFixed(2)}
+                              </span>
+                            </div>
+                          </div>
+                        </li>
+                      })}
+                      {/* <li>
                         <div className="flex justify-between items-center">
                           <div>
                             <h4 className="text-[15px] text-qblack mb-2.5">
@@ -212,8 +240,8 @@ export default function CheakoutPage() {
                             </span>
                           </div>
                         </div>
-                      </li>
-                      <li>
+                      </li> */}
+                      {/* <li>
                         <div className="flex justify-between items-center">
                           <div>
                             <h4 className="text-[15px] text-qblack mb-2.5">
@@ -232,8 +260,8 @@ export default function CheakoutPage() {
                             </span>
                           </div>
                         </div>
-                      </li>
-                      <li>
+                      </li> */}
+                      {/* <li>
                         <div className="flex justify-between items-center">
                           <div>
                             <h4 className="text-[15px] text-qblack mb-2.5">
@@ -252,7 +280,7 @@ export default function CheakoutPage() {
                             </span>
                           </div>
                         </div>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                   <div className="w-full h-[1px] bg-[#EDEDED]"></div>
@@ -263,7 +291,7 @@ export default function CheakoutPage() {
                         SUBTOTAL
                       </p>
                       <p className="text-[15px] font-medium text-qblack uppercase">
-                        $365
+                        {(total_amount).toFixed(2)}
                       </p>
                     </div>
                   </div>
@@ -280,7 +308,7 @@ export default function CheakoutPage() {
                           </p>
                         </div>
                         <p className="text-[15px] font-medium text-qblack">
-                          +$0
+                          +0
                         </p>
                       </div>
                       <div className="w-full h-[1px] bg-[#EDEDED]"></div>
@@ -290,7 +318,7 @@ export default function CheakoutPage() {
                   <div className="mt-[30px]">
                     <div className=" flex justify-between mb-5">
                       <p className="text-2xl font-medium text-qblack">Total</p>
-                      <p className="text-2xl font-medium text-qred">$365</p>
+                      <p className="text-2xl font-medium text-qred"> {(total_amount).toFixed(2)}</p>
                     </div>
                   </div>
                   <div className="shipping mt-[30px]">
@@ -355,13 +383,13 @@ export default function CheakoutPage() {
                       </li>
                     </ul>
                   </div>
-                  <a href="#">
-                    <div className="w-full h-[50px] black-btn flex justify-center items-center">
-                      <span className="text-sm font-semibold">
-                        Place Order Now
-                      </span>
-                    </div>
-                  </a>
+
+                  <div className="w-full h-[50px] black-btn flex justify-center items-center">
+                    {myUser ? <a href="#"><span className="text-sm font-semibold cursor-pointer">
+                      Place Order Now
+                    </span></a> : <span className="cursor-pointer" onClick={loginWithRedirect}>Login to checkout</span>}
+                  </div>
+
                 </div>
               </div>
             </div>

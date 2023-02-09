@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import datas from "../../../data/products.json";
 import BreadcrumbCom from "../../BreadcrumbCom";
@@ -59,9 +59,8 @@ export default function Profile() {
                     className="w-[73px] h-[31px] border border-[#D9D9D9] rounded-full relative "
                   >
                     <div
-                      className={`w-[23px] h-[23px] bg-qblack rounded-full absolute top-[3px] transition-all duration-300 ease-in-out ${
-                        switchDashboard ? "left-[44px]" : "left-[4px]"
-                      }`}
+                      className={`w-[23px] h-[23px] bg-qblack rounded-full absolute top-[3px] transition-all duration-300 ease-in-out ${switchDashboard ? "left-[44px]" : "left-[4px]"
+                        }`}
                     ></div>
                   </button>
                 </div>

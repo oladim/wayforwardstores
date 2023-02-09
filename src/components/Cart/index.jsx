@@ -1,3 +1,4 @@
+import React from 'react';
 import { useCartContext } from "../../data/cart_context";
 
 export default function Cart({ className }) {

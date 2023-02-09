@@ -52,14 +52,14 @@ export default function Footer() {
                                             </span>
                                         </a>
                                     </li>
-                                    <li>
+                                    {/* <li>
                                         <a href="/all-products">
                                             <span
                                                 className="text-[#9A9A9A] text-[15px] hover:text-qblack border-b border-transparent hover:border-qblack cursor-pointer capitalize">
                                                 Best Products
                                             </span>
                                         </a>
-                                    </li>
+                                    </li> */}
                                 </ul>
                             </div>
                         </div>
@@ -72,7 +72,7 @@ export default function Footer() {
                                 </div>
                                 <div>
                                     <ul className="flex flex-col space-y-4 ">
-                                        <li>
+                                        {/* <li>
                                             <a href="/blogs">
 
                                                 <span
@@ -80,7 +80,7 @@ export default function Footer() {
                                                     Blog
                                                 </span>
                                             </a>
-                                        </li>
+                                        </li> */}
                                         <li>
                                             <a href="/tracking-order">
 
@@ -90,7 +90,7 @@ export default function Footer() {
                                                 </span>
                                             </a>
                                         </li>
-                                        <li>
+                                        {/* <li>
                                             <a href="/become-saller">
 
                                                 <span
@@ -98,7 +98,7 @@ export default function Footer() {
                                                     Become Seller
                                                 </span>
                                             </a>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </div>
                             </div>

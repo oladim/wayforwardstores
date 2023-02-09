@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useCartContext } from "../../data/cart_context";
 
 export default function InputQuantityCom({ quantitys, id, wishItem }) {
