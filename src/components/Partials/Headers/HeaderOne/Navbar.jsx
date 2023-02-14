@@ -13,7 +13,7 @@ export default function Navbar({ className }) {
   // const { products } = datas;
   const brands = getUniqueValues(products, 'category');
 
-  console.log("brands", brands);
+
   const [categoryToggle, setToggle] = useState(false);
   const [elementsSize, setSize] = useState("0px");
   // const getItems = document.querySelectorAll(`.categories-list li`).length;

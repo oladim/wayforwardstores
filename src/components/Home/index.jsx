@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from "../../data/context";
+import Loading from '../../data/Loading';
 import SectionStyleFour from "../Helpers/SectionStyleFour";
 import SectionStyleOne from "../Helpers/SectionStyleOne";
 import SectionStyleThree from "../Helpers/SectionStyleThree";
@@ -44,8 +45,7 @@ export default function Home() {
   //   }
   // }
   if (loading) {
-    // return <Loading />
-    return <p>Loading</p>
+    return <Loading />
   }
 
   return (
