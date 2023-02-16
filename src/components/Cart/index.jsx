@@ -1,7 +1,10 @@
 import React from 'react';
 import { useCartContext } from "../../data/cart_context";
+import { useGlobalContext } from '../../data/context';
 
 export default function Cart({ className }) {
+
+  const { country, nairavalue } = useGlobalContext();
 
   const { cart, removeItem, total_amount } = useCartContext();
 
@@ -17,7 +20,6 @@ export default function Cart({ className }) {
             {cart.length <= 0 ? <p className="ml-24 mt-16">Cart is empty</p> : (
               <ul>
                 {cart.map((item) => {
-                  console.log(item);
                   return <li className="w-full h-full flex" key={item.id}>
                     <div className="flex space-x-[6px] justify-center items-center px-4 my-[20px]">
                       <div className="w-[65px] h-full">
@@ -36,7 +38,7 @@ export default function Cart({ className }) {
                         </p>
                         <p className="price">
                           <span className="offer-price text-qred font-600 text-[15px] ml-2">
-                            {(item.price).toFixed(2)}
+                            {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (item.price * nairavalue).toFixed(2) : item.price}
                           </span>
                         </p>
                       </div>
@@ -65,7 +67,7 @@ export default function Cart({ className }) {
           <div className="product-actions px-4 mb-[30px]">
             <div className="total-equation flex justify-between items-center mb-[28px]">
               <span className="text-[15px] font-500 text-qblack">Subtotal</span>
-              <span className="text-[15px] font-500 text-qred ">{total_amount.toFixed(2)}</span>
+              <span className="text-[15px] font-500 text-qred ">{country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (total_amount * nairavalue).toFixed(2) : total_amount.toFixed(2)}</span>
             </div>
             <div className="product-action-btn">
               <a href="/cart">

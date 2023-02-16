@@ -5,7 +5,8 @@ import { reducer } from "./reducer";
 
 const AppContext = React.createContext();
 const url = 'https://mid-ray-airables-project.netlify.app/api/waystores';
-// const exchange_url = `http://data.fixer.io/api/latest?access_key=${process.env.REACT_APP_FIXER_API_KEY}`
+
+const exchange_url = `http://data.fixer.io/api/latest?access_key=${process.env.REACT_APP_FIXER_API_KEY}`
 
 
 
@@ -14,7 +15,9 @@ const defaultState = {
     filter_products: [],
     loading: false,
     naira_value:0,
+    country: null,
     eur_usd: 0,
+    nairavalue: 0,
     eur_naira: 0,
     toggle: false,
        products_error: true,
@@ -36,8 +39,19 @@ const defaultState = {
 
 const ApiProvider = ({children}) =>{
     
-     const [state, dispatch] = useReducer(reducer, defaultState)
+     const [state, dispatch] = useReducer(reducer, defaultState);
 
+     const getGeoInfo = () => {
+        axios.get('https://ipapi.co/json/').then((response) => {
+            let data = response.data;
+            if(data){
+                dispatch({type: "GET_COUNTRY", payload: data.country_name})
+            }
+            
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
      
     const getData = async (url) => {
         dispatch({type: "SET_LOADING"});
@@ -63,17 +77,41 @@ const ApiProvider = ({children}) =>{
         
        }
 
-    //    const fetchExchange = async ()=>{
-    //     try{
-    //         const response = await axios.get(exchange_url);
-    //         const {data: {rates: {USD:usd_price, NGN:naira_price}}} = response;
-    //         dispatch({type: "EXCHANGE", payload:{usd_price, naira_price}})
-    //     }catch(error){
-    //         dispatch({type: "EXCHANGE_ERROR"})
-    //     }
-    //    }
 
+       var myHeaders = new Headers();
+myHeaders.append("apikey", "BIU2AWPC0og9GDYOiMYNYzuWqICPMj0L");
+
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow',
+  headers: myHeaders
+};
+
+       const fetchExchange = async ()=>{
+    
+            await fetch("https://api.apilayer.com/fixer/latest?symbols=NGN&base=USD", requestOptions)
+            .then(response => response.json())
+            .then((result) => {
+                const {rates: {NGN: naira_price}} = result;
+                if(naira_price){
+                    dispatch({type: "EXCHANGE", payload:naira_price});
+                }
+           
        
+            })
+            .catch(error => console.log('error', error));
+            // const {data: {rates: {USD:usd_price, NGN:naira_price}}} = response;
+            // dispatch({type: "EXCHANGE", payload:{usd_price, naira_price}})
+       
+       }
+
+    useEffect(()=>{
+        getGeoInfo();
+    },[])
+       
+    useEffect(()=>{
+        fetchExchange();
+    },[])
 
        useEffect(()=>{
         getData(url);

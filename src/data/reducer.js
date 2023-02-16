@@ -17,6 +17,9 @@ export const reducer = (state, action) =>{
     if(action.type === "REMOVE_LOADING"){
         return {...state, loading: false}
     }
+    if(action.type === "GET_COUNTRY"){
+        return {...state, country: action.payload}
+    }
     if(action.type === "TOGGLE_OVERLAY"){
         if(action.payload === 'open'){
              return {...state, toggle: true}
@@ -43,11 +46,10 @@ export const reducer = (state, action) =>{
         return {...state, filters:{...state.filters, [name]:value}}
     }
     if(action.type === "EXCHANGE"){
-        const {usd_price, naira_price} = action.payload;
-        if(usd_price){
-            return {...state, eur_usd: usd_price, eur_naira: naira_price }
-        }
-        return state
+        
+      
+            return {...state, nairavalue: action.payload}
+     
     }
     if(action.type === "FILTER_PRODUCTS"){
         const {all_Products} = state;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCartContext } from "../../data/cart_context";
+import { useGlobalContext } from '../../data/context';
 import BreadcrumbCom from "../BreadcrumbCom";
 import EmptyCardError from "../EmptyCardError";
 import InputCom from "../Helpers/InputCom";
@@ -9,6 +10,7 @@ import ProductsTable from "./ProductsTable";
 
 export default function CardPage({ cart = true }) {
   const { total_amount } = useCartContext();
+  const { country, nairavalue } = useGlobalContext();
   return (
     <Layout childrenClasses={cart ? "pt-0 pb-0" : ""}>
       {cart === false ? (
@@ -68,7 +70,7 @@ export default function CardPage({ cart = true }) {
                       <p className="text-[15px] font-medium text-qblack">
                         Subtotal
                       </p>
-                      <p className="text-[15px] font-medium text-qred">{total_amount.toFixed(2)}</p>
+                      <p className="text-[15px] font-medium text-qred">{country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (total_amount * nairavalue).toFixed(2) : (total_amount).toFixed(2)}</p>
                     </div>
                     <div className="w-full h-[1px] bg-[#EDEDED]"></div>
                   </div>
@@ -179,7 +181,7 @@ export default function CardPage({ cart = true }) {
                       <p className="text-[18px] font-medium text-qblack">
                         Total
                       </p>
-                      <p className="text-[18px] font-medium text-qred">{total_amount.toFixed(2)}</p>
+                      <p className="text-[18px] font-medium text-qred">{country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (total_amount * nairavalue).toFixed(2) : (total_amount).toFixed(2)}</p>
                     </div>
                   </div>
                   <a href="/checkout">

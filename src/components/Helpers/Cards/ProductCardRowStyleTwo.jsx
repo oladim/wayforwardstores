@@ -1,5 +1,9 @@
 import React from 'react';
+import { useGlobalContext } from '../../../data/context';
 export default function ProductCardRowStyleTwo({ className, datas }) {
+
+  const { country, nairavalue } = useGlobalContext();
+
   return (
     <div
       data-aos="fade-up"
@@ -23,10 +27,10 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
 
             <p className="price">
               <span className="main-price text-qgray line-through font-600 text-[18px]">
-                {datas.price}
+                {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (datas.price * nairavalue).toFixed(2) : (datas.price).toFixed(2)}
               </span>
               <span className="offer-price text-qred font-600 text-[18px] ml-2">
-                {datas.offer_price}
+                {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (datas.offer_price * nairavalue).toFixed(2) : (datas.offer_price).toFixed(2)}
               </span>
             </p>
           </div>

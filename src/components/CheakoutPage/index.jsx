@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCartContext } from '../../data/cart_context';
+import { useGlobalContext } from '../../data/context';
 import { useUserContext } from '../../data/user_context';
 import InputCom from "../Helpers/InputCom";
 import PageTitle from "../Helpers/PageTitle";
@@ -7,6 +8,7 @@ import Layout from "../Partials/Layout";
 
 export default function CheakoutPage() {
   const { cart, total_amount } = useCartContext();
+  const { country, nairavalue } = useGlobalContext();
   const { loginWithRedirect, myUser, logout } = useUserContext();
   return (
     <Layout childrenClasses="pt-0 pb-0">
@@ -215,7 +217,7 @@ export default function CheakoutPage() {
                             </div>
                             <div>
                               <span className="text-[15px] text-qblack font-medium">
-                                {(item.price * item.amount).toFixed(2)}
+                                {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (item.price * item.amount * nairavalue).toFixed(2) : (item.price * item.amount).toFixed(2)}
                               </span>
                             </div>
                           </div>
@@ -291,7 +293,7 @@ export default function CheakoutPage() {
                         SUBTOTAL
                       </p>
                       <p className="text-[15px] font-medium text-qblack uppercase">
-                        {(total_amount).toFixed(2)}
+                        {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (total_amount * nairavalue).toFixed(2) : (total_amount).toFixed(2)}
                       </p>
                     </div>
                   </div>
@@ -318,7 +320,7 @@ export default function CheakoutPage() {
                   <div className="mt-[30px]">
                     <div className=" flex justify-between mb-5">
                       <p className="text-2xl font-medium text-qblack">Total</p>
-                      <p className="text-2xl font-medium text-qred"> {(total_amount).toFixed(2)}</p>
+                      <p className="text-2xl font-medium text-qred">{country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (total_amount * nairavalue).toFixed(2) : (total_amount).toFixed(2)}</p>
                     </div>
                   </div>
                   <div className="shipping mt-[30px]">

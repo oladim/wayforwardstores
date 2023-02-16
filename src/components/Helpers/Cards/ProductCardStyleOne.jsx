@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCartContext } from "../../../data/cart_context";
+import { useGlobalContext } from '../../../data/context';
 import Compair from "../icons/Compair";
 import QuickViewIco from "../icons/QuickViewIco";
 import Star from "../icons/Star";
@@ -8,6 +9,7 @@ import ThinLove from "../icons/ThinLove";
 export default function ProductCardStyleOne({ datas }) {
 
   const { addToCart, addToWishList } = useCartContext();
+  const { country, nairavalue } = useGlobalContext();
 
   const available =
     (datas.cam_product_sale /
@@ -95,10 +97,10 @@ export default function ProductCardStyleOne({ datas }) {
         </a>
         <p className="price">
           <span className="main-price text-qgray line-through font-600 text-[18px]">
-            {datas.price}
+            {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (datas.price * nairavalue).toFixed(2) : (datas.price).toFixed(2)}
           </span>
           <span className="offer-price text-qred font-600 text-[18px] ml-2">
-            {datas.offer_price}
+            {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (datas.offer_price * nairavalue).toFixed(2) : (datas.offer_price).toFixed(2)}
           </span>
         </p>
       </div>

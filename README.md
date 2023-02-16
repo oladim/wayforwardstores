@@ -165,6 +165,6 @@ Create a `.eslintrc` file in the project root and enter the below contents:
 }
 ```
 
-## Credits
 
-Made by [meXuvo](http://www.mexuvo.com/)
+
+

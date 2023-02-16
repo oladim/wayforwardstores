@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCartContext } from "../../../data/cart_context";
+import { useGlobalContext } from '../../../data/context';
 import Compair from "../icons/Compair";
 import QuickViewIco from "../icons/QuickViewIco";
 import Star from "../icons/Star";
@@ -8,6 +9,7 @@ import ThinLove from "../icons/ThinLove";
 export default function ProductCardRowStyleTwo({ className, datas }) {
 
   const { addToCart } = useCartContext();
+  const { country, nairavalue } = useGlobalContext();
 
   return (
     <div
@@ -40,10 +42,10 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
             </a>
             <p className="price mb-[26px]">
               <span className="main-price text-qgray line-through font-600 sm:text-[18px] text-base">
-                {datas.price}
+                {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (datas.price * nairavalue).toFixed(2) : (datas.price).toFixed(2)}
               </span>
               <span className="offer-price text-qred font-600 sm:text-[18px] text-base ml-2">
-                {datas.offer_price}
+                {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (datas.offer_price * nairavalue).toFixed(2) : (datas.offer_price).toFixed(2)}
               </span>
             </p>
             <button type="button" className="w-[110px] h-[30px]" onClick={() => addToCart(datas.id, 1, datas)}>
