@@ -57,7 +57,6 @@ const ApiProvider = ({children}) =>{
         dispatch({type: "SET_LOADING"});
         try{
             const {data} = await axios.get(url); 
-            console.log("data", data);
         dispatch({type: "GET_PRODUCTS_SUCCESS", payload: data})
         dispatch({type: "REMOVE_LOADING"})
         }catch(error){

@@ -97,10 +97,10 @@ export default function ProductCardStyleOne({ datas }) {
         </a>
         <p className="price">
           <span className="main-price text-qgray line-through font-600 text-[18px]">
-            {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (datas.price * nairavalue).toFixed(2) : (datas.price).toFixed(2)}
+            {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? parseFloat((datas.price * nairavalue)).toFixed(2) : parseFloat((datas.price)).toFixed(2)}
           </span>
           <span className="offer-price text-qred font-600 text-[18px] ml-2">
-            {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (datas.offer_price * nairavalue).toFixed(2) : (datas.offer_price).toFixed(2)}
+            {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? parseFloat((datas.offer_price * nairavalue)).toFixed(2) : parseFloat((datas.offer_price)).toFixed(2)}
           </span>
         </p>
       </div>

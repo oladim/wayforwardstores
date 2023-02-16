@@ -86,9 +86,8 @@ export default function Navbar({ className }) {
                   style={{ height: `${elementsSize} ` }}
                 >
                   <ul className="categories-list">
-                    {brands.map((brand) => {
-                      console.log("brand", brand);
-                      return <li className="category-item">
+                    {brands.map((brand, idx) => {
+                      return <li className="category-item" key={idx}>
                         <a href="/all-products">
                           <div className=" flex justify-between items-center px-5 h-10 bg-white hover:bg-qyellow transition-all duration-300 ease-in-out cursor-pointer">
                             <div className="flex items-center space-x-6">

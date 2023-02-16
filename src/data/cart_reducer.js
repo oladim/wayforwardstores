@@ -24,7 +24,7 @@ const cart_reducer = (state, action) => {
 
       return { ...state, cart: tempCart }
     } else {
-      console.log("product from cart reducer", products)
+     
       const newItem = {
         id: id,
         title: products.title,
@@ -127,7 +127,6 @@ const cart_reducer = (state, action) => {
     const { total_items, total_amount } = state.cart.reduce(
       (total, cartItem) => {
         const { amount, price } = cartItem
-        console.log(amount, price);
         total.total_items += amount
         total.total_amount += price * amount
         return total

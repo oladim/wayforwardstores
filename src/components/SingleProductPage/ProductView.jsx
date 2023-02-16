@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { useParams } from "react-router-dom";
+import { useCartContext } from '../../data/cart_context';
 import { useGlobalContext } from "../../data/context";
 import Star from "../Helpers/icons/Star";
 import Selectbox from "../Helpers/Selectbox";
@@ -11,7 +12,8 @@ import Selectbox from "../Helpers/Selectbox";
 
 export default function ProductView({ className, reportHandler }) {
   const url = 'https://mid-ray-airables-project.netlify.app/api/waystores?id='
-  const { single_product_loading: loading, single_product_error: error } = useGlobalContext();
+  const { single_product_loading: loading, single_product_error: error, country, nairavalue } = useGlobalContext();
+  const { addToCart } = useCartContext();
   const { id } = useParams();
 
   const [data, setData] = useState({});
@@ -23,7 +25,7 @@ export default function ProductView({ className, reportHandler }) {
   // console.log(prod);
   // const data = (prod[0]);
   // console.log(data);
-  console.log(id)
+
   // const productsImg = [
   //   {
   //     id: 1,
@@ -70,14 +72,18 @@ export default function ProductView({ className, reportHandler }) {
     try {
       const { data } = await axios.get(url);
       if (data) {
-        const { fields: { images, offer_price, price } } = data;
+        const { id, fields: { images, offer_price, price, title, review } } = data;
         setData({
           images: images,
           offer_price: offer_price,
-          price: price
+          price: price,
+          title: title,
+          review: review,
+          id: id,
+          url: images[0].url
         });
       }
-      console.log("data is:", data);
+
       // dispatch({ type: "GET_SINGLE_PRODUCT_SUCCESS", payload: data })
     } catch (error) {
       // dispatch({ type: "GET_SINGLE_PRODUCT_ERROR" })
@@ -119,7 +125,7 @@ export default function ProductView({ className, reportHandler }) {
               className="object-fit h-full w-full"
             />
             <div className="w-[80px] h-[80px] rounded-full bg-qyellow text-qblack flex justify-center items-center text-xl font-medium absolute left-[30px] top-[30px]">
-              <span>-{data.price - data.offer_price}%</span>
+              <span>-{parseInt(((data.price - data.offer_price) / data.price) * 100)}%</span>
             </div>
           </div>
           <div className="flex gap-2 flex-wrap">
@@ -154,7 +160,7 @@ export default function ProductView({ className, reportHandler }) {
             data-aos="fade-up"
             className="text-xl font-medium text-qblack mb-4"
           >
-            Samsung Galaxy Z Fold3 5G 3 colors in 512GB
+            {data ? data.title : null}
           </p>
 
           <div
@@ -169,22 +175,22 @@ export default function ProductView({ className, reportHandler }) {
               <Star />
             </div>
             <span className="text-[13px] font-normal text-qblack">
-              {data.review}
+              {data.review} Reviews
             </span>
           </div>
 
           <div data-aos="fade-up" className="flex space-x-2 items-center mb-7">
             <span className="text-sm font-500 text-qgray line-through mt-2">
-              {/* N{data.price} */}
+              {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? parseFloat((data.price * nairavalue)).toFixed(2) : parseFloat((data.price)).toFixed(2)}
             </span>
-            {/* <span className="text-2xl font-500 text-qred">N{data.offer_price}</span> */}
+            <span className="text-2xl font-500 text-qred">{country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? parseFloat((data.offer_price * nairavalue)).toFixed(2) : parseFloat((data.offer_price)).toFixed(2)}</span>
           </div>
 
           <p
             data-aos="fade-up"
             className="text-qgray text-sm text-normal mb-[30px] leading-7"
           >
-            {/* {data.title}} */}
+            {data.title}
           </p>
 
           <div data-aos="fade-up" className="colors mb-[30px]">
@@ -232,7 +238,8 @@ export default function ProductView({ className, reportHandler }) {
                       </div>
                       <div className="flex space-x-10 items-center">
                         <span className="text-[13px] text-qblack">
-                          3”W x 3”D x 7”H
+                          {/* 3”W x 3”D x 7”H */}
+                          Relative
                         </span>
                         <span>
                           <svg
@@ -304,6 +311,7 @@ export default function ProductView({ className, reportHandler }) {
               <button
                 type="button"
                 className="black-btn text-sm font-semibold w-full h-full"
+                onClick={() => addToCart(data.id, 1, data)}
               >
                 Add To Cart
               </button>

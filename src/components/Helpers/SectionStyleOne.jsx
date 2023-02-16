@@ -23,7 +23,6 @@ export default function SectionStyleOne({
 
 
   const gamerItems = filter_products.filter((item) => item.banner === "no");
-  console.log("gamer items", gamerItems);
   const [productLength] = useState(3);
   // useEffect(() => {
   //   if (window.matchMedia("(max-width: 1024px)")) {

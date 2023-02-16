@@ -4,7 +4,7 @@ export const reducer = (state, action) =>{
         return {...state, loading: true}
     }
     if(action.type === "GET_PRODUCTS_SUCCESS"){
-        console.log("from reducer", action.payload);
+        
         // let maxPrice = action.payload.map((p)=> p.price);
         // let maxMileage = action.payload.map((p)=> p.mileage);
         // maxMileage = Math.max(...maxMileage)

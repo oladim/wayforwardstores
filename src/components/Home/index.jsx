@@ -22,7 +22,6 @@ export default function Home() {
   // const { products } = datas;
   const brands = [];
   products.forEach((product) => {
-    console.log("individual", product)
     brands.push(product.brand);
   });
 
