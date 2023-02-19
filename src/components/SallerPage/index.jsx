@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "react-input-range/lib/css/index.css";
+import { useFilterContext } from "../../data/filter_context";
 import productDatas from "../../data/products.json";
 import ProductCardStyleOne from "../Helpers/Cards/ProductCardStyleOne";
 import DataIteration from "../Helpers/DataIteration";
@@ -8,6 +9,8 @@ import Layout from "../Partials/Layout";
 import ProductsFilter from "./ProductsFilter";
 
 export default function SallerPage() {
+  const { filters: { max_price } } = useFilterContext();
+
   const [filters, setFilter] = useState({
     mobileLaptop: false,
     gaming: false,
@@ -43,7 +46,7 @@ export default function SallerPage() {
       [name]: !prevState[name],
     }));
   };
-  const [volume, setVolume] = useState({ min: 200, max: 500 });
+  const [volume, setVolume] = useState({ min: 0, max: max_price });
 
   const [storage, setStorage] = useState(null);
   const filterStorage = (value) => {
@@ -52,6 +55,9 @@ export default function SallerPage() {
   const [filterToggle, setToggle] = useState(false);
 
   const { products } = productDatas;
+  useEffect(() => {
+
+  }, [max_price])
 
   return (
     <>

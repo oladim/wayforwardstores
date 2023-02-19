@@ -1,7 +1,8 @@
-import React from 'react';
-import InputRange from "react-input-range";
+import React, { useEffect } from 'react';
 import "react-input-range/lib/css/index.css";
+import { useFilterContext } from '../../data/filter_context';
 import Checkbox from "../Helpers/Checkbox";
+import { getUniqueValues } from '../Helpers/unique';
 
 export default function ProductsFilter({
   filters,
@@ -14,6 +15,14 @@ export default function ProductsFilter({
   filterToggle,
   filterToggleHandler,
 }) {
+
+  const { updateFilters, all_products: products, filters: { max_price, price } } = useFilterContext();
+  const brands = getUniqueValues(products, 'category');
+
+
+  useEffect(() => {
+
+  }, [brands, max_price])
   return (
     <>
       <div
@@ -28,47 +37,51 @@ export default function ProductsFilter({
           </div>
           <div className="filter-items">
             <ul>
-              <li className="item flex justify-between items-center mb-5">
-                <div className="flex space-x-[14px] items-center">
-                  <div>
-                    <Checkbox
+              {brands.map((item, idx) => {
+                return <li className="item flex justify-between items-center mb-5" key={idx}>
+                  <div className="flex space-x-[14px] items-center">
+                    <div>
+                      {/* <Checkbox
                       id="mobileLaptop"
-                      name="mobileLaptop"
-                      handleChange={(e) => checkboxHandler(e)}
+                      name="brand"
+                      handleChange={(e) => {
+                        checkboxHandler(e);
+                        updateFilter()
+                      }}
                       checked={filters.mobileLaptop}
-                    />
+                    /> */}
+                    </div>
+                    <button
+                      name='category'
+                      onClick={updateFilters}
+                    >
+                      {item}
+
+                    </button>
                   </div>
                   <div>
-                    <label
-                      htmlFor="mobileLaptop"
-                      className="text-xs font-black font-400 capitalize"
-                    >
-                      Mobile & Laptops
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <span className="cursor-pointer">
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect y="4" width="10" height="2" fill="#C4C4C4" />
-                      <rect
-                        x="6"
+                    <span className="cursor-pointer">
+                      <svg
                         width="10"
-                        height="2"
-                        transform="rotate(90 6 0)"
-                        fill="#C4C4C4"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </li>
-              <li className="item flex justify-between items-center mb-5">
+                        height="10"
+                        viewBox="0 0 10 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <rect y="4" width="10" height="2" fill="#C4C4C4" />
+                        <rect
+                          x="6"
+                          width="10"
+                          height="2"
+                          transform="rotate(90 6 0)"
+                          fill="#C4C4C4"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </li>
+              })}
+              {/* <li className="item flex justify-between items-center mb-5">
                 <div className="flex space-x-[14px] items-center">
                   <div>
                     <Checkbox
@@ -467,7 +480,7 @@ export default function ProductsFilter({
                     </svg>
                   </span>
                 </div>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -476,16 +489,16 @@ export default function ProductsFilter({
             <h1 className="text-black text-base font-500">Price Range</h1>
           </div>
           <div className="price-range mb-5">
-            <InputRange
-              draggableTrack
-              maxValue={1000}
+            <input type="range"
+              name='price'
+              maxValue={max_price}
               minValue={0}
-              value={volume}
-              onChange={volumeHandler}
+              value={price}
+              onChange={updateFilters}
             />
           </div>
           <p className="text-xs text-qblack font-400">
-            Price: ${volume.min} - ${volume.max}
+            Price: ${0} - ${max_price}:  {price}
           </p>
         </div>
         <div className="filter-subject-item pb-10 border-b border-qgray-border mt-10">
@@ -666,8 +679,8 @@ export default function ProductsFilter({
               <span
                 onClick={() => filterstorage("64GB")}
                 className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "64GB"
-                    ? "bg-qyellow text-qblack border-none"
-                    : " text-qgray "
+                  ? "bg-qyellow text-qblack border-none"
+                  : " text-qgray "
                   }`}
               >
                 64GB
@@ -675,8 +688,8 @@ export default function ProductsFilter({
               <span
                 onClick={() => filterstorage("128GB")}
                 className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "128GB"
-                    ? "bg-qyellow text-qblack border-none"
-                    : " text-qgray "
+                  ? "bg-qyellow text-qblack border-none"
+                  : " text-qgray "
                   }`}
               >
                 128GB
@@ -684,8 +697,8 @@ export default function ProductsFilter({
               <span
                 onClick={() => filterstorage("256GB")}
                 className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "256GB"
-                    ? "bg-qyellow text-qblack border-none"
-                    : " text-qgray "
+                  ? "bg-qyellow text-qblack border-none"
+                  : " text-qgray "
                   }`}
               >
                 256GB
@@ -693,8 +706,8 @@ export default function ProductsFilter({
               <span
                 onClick={() => filterstorage("512GB")}
                 className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "512GB"
-                    ? "bg-qyellow text-qblack border-none"
-                    : " text-qgray "
+                  ? "bg-qyellow text-qblack border-none"
+                  : " text-qgray "
                   }`}
               >
                 512GB
@@ -702,8 +715,8 @@ export default function ProductsFilter({
               <span
                 onClick={() => filterstorage("1024GB")}
                 className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "1024GB"
-                    ? "bg-qyellow text-qblack border-none"
-                    : " text-qgray "
+                  ? "bg-qyellow text-qblack border-none"
+                  : " text-qgray "
                   }`}
               >
                 1024GB

@@ -7,8 +7,10 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { CartProvider } from "./data/cart_context";
 import { ApiProvider } from "./data/context";
+import { FilterProvider } from "./data/filter_context";
 import { UserProvider } from "./data/user_context";
 import "./index.css";
+
 
 AOS.init();
 
@@ -25,14 +27,14 @@ ReactDOM.createRoot(root).render(
   >
   <UserProvider>
   <ApiProvider>
-  {/* <FilterProvider> */}
+  <FilterProvider>
     <CartProvider>
      
   <BrowserRouter>
     <App />
   </BrowserRouter>
   </CartProvider>
-  {/* </FilterProvider> */}
+  </FilterProvider>
   </ApiProvider>
   </UserProvider>
   </Auth0Provider>

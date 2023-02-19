@@ -24,7 +24,7 @@ const defaultState = {
     single_product_loading: false,
     single_product_error: true,
     filters: {
-        brand: 'All',
+        category: 'All',
         type: 'All',
         price: 0,
         min_price: 0,
@@ -78,7 +78,7 @@ const ApiProvider = ({children}) =>{
 
 
        var myHeaders = new Headers();
-myHeaders.append("apikey", "BIU2AWPC0og9GDYOiMYNYzuWqICPMj0L");
+myHeaders.append("apikey", process.env.REACT_APP_FIXER_API_KEY);
 
 var requestOptions = {
   method: 'GET',
@@ -116,10 +116,13 @@ var requestOptions = {
         getData(url);
        },[])
        
-       useEffect(()=>{
-       dispatch({type: "FILTER_PRODUCTS"})
-       },[state.filters])
-
+    //    useEffect(()=>{
+    //    dispatch({type: "FILTER_PRODUCTS"})
+    //    },[state.filters])
+       
+    //    useEffect(()=>{
+        
+    //     },[state.all_Products])
     //    useEffect(()=>{
     //     fetchExchange();
     // },[])
@@ -136,11 +139,14 @@ var requestOptions = {
     const updateFilter = (e) =>{
         let name = e.target.name;
         let value = e.target.value;
-        if(name === 'brand'){
-            value = e.target.textContent
+        // console.log(e);
+        console.log("name and value", name, value);
+        if(name === 'category'){
+            value = e.target.textContent;
+            console.log("value", value);
         }
         if(name === 'price'){
-            value =Number(value)
+            value = Number(value)
         }
         if(name === 'mileage'){
             value =Number(value)
@@ -149,6 +155,7 @@ var requestOptions = {
             value = e.target.dataset.color
         }
         dispatch({type: "UPDATE_FILTER", payload:{name, value}})
+        dispatch({type: "FILTER_PRODUCTS"})
     }
     const clearFilter = () =>{
         dispatch({type: "CLEAR_FILTERS"})

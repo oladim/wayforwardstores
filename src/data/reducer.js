@@ -53,47 +53,52 @@ export const reducer = (state, action) =>{
     }
     if(action.type === "FILTER_PRODUCTS"){
         const {all_Products} = state;
-        const {brand,
+        console.log("All products", all_Products)
+        const {category,
         type,
         price,
         color,
         year,
         mileage} = state.filters
         let filteringProducts = [...all_Products];
-            // if(brand !== 'All'){
-            //     filteringProducts = filteringProducts.filter((product)=>{
-            //         return product.brand === brand;
-            //     })
-            // }
-            // if(type !== 'All'){
-            //     filteringProducts = filteringProducts.filter((product)=>{
-            //         return product.type === type;
-            //     })
-            // }
-            // if(color !== 'All'){
-            //     filteringProducts = filteringProducts.filter((product)=>{
-            //         return product.color.find((c)=> c === color)
-            //     })
-            // }
-            // if(year !== 'All'){
-            //     filteringProducts = filteringProducts.filter((product)=>{
-            //         return product.year === year;
-            //     })
-            // }
+        console.log("filtering products", filteringProducts)
+        // if(brand === 'All'){
+        //     filteringProducts = filteringProducts;
+        // }
+        if (category !== 'All') {
+            filteringProducts = filteringProducts.filter(
+              (product) => product.category === category
+            )
+          }
+            if(type !== 'All'){
+                filteringProducts = filteringProducts.filter((product)=>{
+                    return product.type === type;
+                })
+            }
+            if(color !== 'All'){
+                filteringProducts = filteringProducts.filter((product)=>{
+                    return product.color.find((c)=> c === color)
+                })
+            }
+            if(year !== 'All'){
+                filteringProducts = filteringProducts.filter((product)=>{
+                    return product.year === year;
+                })
+            }
 
-            // filteringProducts = filteringProducts.filter((product)=>{
-            //     return product.price <= price
-            // })
+            filteringProducts = filteringProducts.filter((product)=>{
+                return product.price <= price
+            })
 
-            // filteringProducts = filteringProducts.filter((product)=>{
-            //     return product.mileage <= mileage
-            // })
-
+            filteringProducts = filteringProducts.filter((product)=>{
+                return product.mileage <= mileage
+            })
+console.log("after", filteringProducts);
         return {...state, filter_products: filteringProducts}
     }
     if(action.type === "CLEAR_FILTERS"){
         return {...state, filters:{...state.filters, 
-            brand: 'All',
+            category: 'All',
             type: 'All',
             price: state.filters.max_price,
             color: 'All',

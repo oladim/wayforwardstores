@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react'
 import {
   CLEAR_FILTERS, FILTER_PRODUCTS, LOAD_PRODUCTS,
   // SET_GRIDVIEW,
@@ -6,9 +6,9 @@ import {
   // UPDATE_SORT,
   // SORT_PRODUCTS,
   UPDATE_FILTERS
-} from './actions';
-import { useGlobalContext } from "./context";
-import reducer from './filter_reducer';
+} from './actions'
+import { useGlobalContext } from './context'
+import reducer from './filter_reducer'
 
 const initialState = {
   filtered_products: [],
@@ -16,7 +16,7 @@ const initialState = {
   // grid_view: true,
   // sort: 'price-lowest',
   filters: {
-    category: 'All Products',
+    category: 'All',
     // company: 'all',
     // category: 'all',
     // color: 'all',
@@ -30,17 +30,17 @@ const initialState = {
 const FilterContext = React.createContext()
 
 export const FilterProvider = ({ children }) => {
-  const { products } = useGlobalContext();
+  const { all_Products } = useGlobalContext();
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
-    dispatch({ type: LOAD_PRODUCTS, payload: products })
-  }, [products])
+    dispatch({ type: LOAD_PRODUCTS, payload: all_Products })
+  }, [all_Products])
 
   useEffect(() => {
     dispatch({ type: FILTER_PRODUCTS })
     // dispatch({ type: SORT_PRODUCTS })
-  }, [products, state.filters])
+  }, [all_Products, state.filters])
 
   // const setGridView = () => {
   //   dispatch({ type: SET_GRIDVIEW })
@@ -56,18 +56,17 @@ export const FilterProvider = ({ children }) => {
   // }
   const updateFilters = (e) => {
     let name = e.target.name
-    console.log("filters", name)
+  
     let value = e.target.value
     if (name === 'category') {
       value = e.target.textContent
-      console.log("value", value);
     }
     // if (name === 'color') {
     //   value = e.target.dataset.color
     // }
-    // if (name === 'price') {
-    //   value = Number(value)
-    // }
+    if (name === 'price') {
+      value = Number(value)
+    }
     // if (name === 'shipping') {
     //   value = e.target.checked
     // }

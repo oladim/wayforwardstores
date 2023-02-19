@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "react-input-range/lib/css/index.css";
 import { useGlobalContext } from "../../data/context";
+import { useFilterContext } from '../../data/filter_context';
 import BreadcrumbCom from "../BreadcrumbCom";
 import ProductCardStyleOne from "../Helpers/Cards/ProductCardStyleOne";
 import DataIteration from "../Helpers/DataIteration";
@@ -9,7 +10,8 @@ import ProductsFilter from "../SallerPage/ProductsFilter";
 
 export default function AllProductPage() {
 
-  const { loading, filter_products: products } = useGlobalContext();
+  const { loading } = useGlobalContext();
+  const { filtered_products } = useFilterContext();
 
 
   const [filters, setFilter] = useState({
@@ -56,7 +58,9 @@ export default function AllProductPage() {
   const [filterToggle, setToggle] = useState(false);
 
   // const { products } = productDatas;
+  useEffect(() => {
 
+  }, [filtered_products])
   return (
     <>
       <Layout>
@@ -135,7 +139,7 @@ export default function AllProductPage() {
                   </button>
                 </div>
                 <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1  xl:gap-[30px] gap-5 mb-[40px]">
-                  <DataIteration datas={products} startLength={0} endLength={6}>
+                  <DataIteration datas={filtered_products} startLength={0} endLength={6}>
                     {({ datas }) => (
                       <div data-aos="fade-up" key={datas.id}>
                         <ProductCardStyleOne datas={datas} />
@@ -153,7 +157,7 @@ export default function AllProductPage() {
                 </div>
                 <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]">
                   <DataIteration
-                    datas={products}
+                    datas={filtered_products}
                     startLength={6}
                     endLength={15}
                   >

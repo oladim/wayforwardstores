@@ -5,14 +5,14 @@ import {
 
 const filter_reducer = (state, action) => {
   if (action.type === LOAD_PRODUCTS) {
-    // let maxPrice = action.payload.map((p) => p.price)
-    // maxPrice = Math.max(...maxPrice)
+    let maxPrice = action.payload.map((p) => p.offer_price)
+    maxPrice = Math.max(...maxPrice)
 
     return {
       ...state,
       all_products: [...action.payload],
       filtered_products: [...action.payload],
-      // filters: { ...state.filters, max_price: maxPrice, price: maxPrice },
+      filters: { ...state.filters, max_price: maxPrice, price: maxPrice },
     }
   }
   if (action.type === SET_GRIDVIEW) {
@@ -70,7 +70,7 @@ const filter_reducer = (state, action) => {
     //   })
     // }
     // category
-    if (category !== 'All Products') {
+    if (category !== 'All') {
       tempProducts = tempProducts.filter(
         (product) => product.category === category
       )
@@ -90,7 +90,7 @@ const filter_reducer = (state, action) => {
     // }
     // // price
     // tempProducts = tempProducts.filter((product) => product.price <= price)
-    // // shipping
+    // shipping
     // if (shipping) {
     //   tempProducts = tempProducts.filter((product) => product.shipping === true)
     // }
