@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom";
+import StripeCheckout from "../src/data/StripeCheckout";
 import About from "./components/About";
 import AllProductPage from "./components/AllProductPage/index";
 import Login from "./components/Auth/Login/index";
@@ -49,6 +50,7 @@ export default function Routers() {
       <Route exact path="/become-saller" element={<BecomeSaller />} />
       <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route exact path="/terms-condition" element={<TermsCondition />} />
+      <Route exact path="/checkout" element={<StripeCheckout />} />
       <Route exact path="*" element={<FourZeroFour />} />
     </Routes>
   );
