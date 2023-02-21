@@ -1,11 +1,14 @@
 import styled from "styled-components";
 // import { useRef } from "react";
 // import { Link } from "react-router-dom";
+import { useGlobalContext } from "../context";
 
 export const formatPrice = (number) => {
+
+  const {country} = useGlobalContext();
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'USD',
+    currency: country === "Nigeria" ? 'NGN' : 'USD',
   }).format(number)
 }
 

@@ -50,7 +50,7 @@ export default function Routers() {
       <Route exact path="/become-saller" element={<BecomeSaller />} />
       <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route exact path="/terms-condition" element={<TermsCondition />} />
-      <Route exact path="/checkout" element={<StripeCheckout />} />
+      <Route exact path="/checkoutpayment" element={<StripeCheckout />} />
       <Route exact path="*" element={<FourZeroFour />} />
     </Routes>
   );

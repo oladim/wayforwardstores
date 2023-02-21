@@ -387,7 +387,7 @@ export default function CheakoutPage() {
                   </div>
 
                   <div className="w-full h-[50px] black-btn flex justify-center items-center">
-                    {myUser ? <a href="/checkout"><span className="text-sm font-semibold cursor-pointer">
+                    {myUser ? <a href="/checkoutpayment"><span className="text-sm font-semibold cursor-pointer">
                       Place Order Now
                     </span></a> : <span className="cursor-pointer" onClick={loginWithRedirect}>Login to checkout</span>}
                   </div>

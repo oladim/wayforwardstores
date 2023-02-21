@@ -6,15 +6,20 @@ import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import Layout from '../components/Partials/Layout'
 import { useCartContext } from './cart_context'
+import { useGlobalContext } from './context'
+import { useUserContext } from './user_context'
 import { formatPrice } from './utils/helpers'
 // import { useHistory } from 'react-router-dom'
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
+console.log(promise);
 
 const CheckoutForm = () => {
   const { cart, total_amount, shipping_fee, clearCart } = useCartContext()
   const { myUser } = useUserContext()
+  const {country, nairavalue}  = useGlobalContext();
   // const history = useHistory()
   // STRIPE STUFF
   const [succeeded, setSucceeded] = useState(false)
@@ -88,6 +93,8 @@ const CheckoutForm = () => {
   }
 
   return (
+    <>
+   
     <div>
       {succeeded ? (
         <article>
@@ -98,10 +105,11 @@ const CheckoutForm = () => {
       ) : (
         <article>
           <h4 className='user'>Hello, {myUser && myUser.name}</h4>
-          <p className='total_price'>Your total is: {formatPrice(shipping_fee + total_amount)}</p>
-          {/* <p>Test Card Number : 4242 4242 4242 4242</p> */}
+          <p className='total_price'>Your total is: {country === "Nigeria" ? (formatPrice(shipping_fee + (total_amount * nairavalue))) : formatPrice(shipping_fee + total_amount)}</p>
+          <p>Test Card Number : 4242 4242 4242 4242</p>
         </article>
       )}
+      <div className='paydiv'>
       <form id='payment-form' onSubmit={handleSubmit}>
         <CardElement
           id='card-element'
@@ -128,23 +136,31 @@ const CheckoutForm = () => {
           Refresh the page to pay again
         </p>
       </form>
+      </div>
     </div>
+    
+    </>
   )
 }
 
 const StripeCheckout = () => {
   return (
+    <Layout>
     <Wrapper>
       <Elements stripe={promise}>
+        <div className='paydiv'>
         <CheckoutForm />
+        </div>
       </Elements>
     </Wrapper>
+    </Layout>
   )
 }
 
 const Wrapper = styled.section`
 margin-top: 2rem;
 article{
+text-align: center;
   h4{
     font-weight: 600;
     font-size: 1.5rem;
@@ -154,14 +170,23 @@ article{
     margin-bottom: 10px;
   }
 }
+.paydiv{
+  width: 100vw;
+  display: flex;
+}
   form {
     width: 30vw;
-    align-self: center;
+   
     box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
       0px 2px 5px 0px rgba(50, 50, 93, 0.1),
       0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
     border-radius: 7px;
     padding: 40px;
+    text-align: center;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
   }
   input {
     border-radius: 6px;
@@ -294,6 +319,7 @@ article{
   @media (min-width: 360px) {
     article{
       margin-left: 1rem;
+      
     }
 
 `
