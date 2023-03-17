@@ -18,8 +18,8 @@ export default function Ads({ handler }) {
             <div className="logo mb-[40px]">
               <a href="/">
                 <img
-                  width="152"
-                  height="100"
+                  width="200"
+                  height="90"
                   src={`${process.env.PUBLIC_URL}/assets/images/logo.png`}
                   alt="logo"
                 />

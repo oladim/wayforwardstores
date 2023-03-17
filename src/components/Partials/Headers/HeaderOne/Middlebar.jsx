@@ -20,8 +20,8 @@ export default function Middlebar({ className }) {
             <div>
               <a href="/">
                 <img
-                  width="152"
-                  height="50"
+                  width="200"
+                  height="90"
                   src={`${process.env.PUBLIC_URL}/assets/images/logo.png`}
                   alt="logo"
                 />
