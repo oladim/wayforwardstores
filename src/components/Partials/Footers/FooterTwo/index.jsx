@@ -181,7 +181,7 @@ export default function Footer() {
                 rel="noreferrer"
                 className="font-500 text-qblack mx-1"
               >
-                Wayforward Stores
+                Wayforward Booth
               </a>
               All rights reserved
             </span>
