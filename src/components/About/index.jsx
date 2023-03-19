@@ -129,10 +129,10 @@ export default function About() {
                   </div>
                   <div className="flex items-center space-x-2.5 mt-3">
                     <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
-                      <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/comment-user-1.png`}
+                      {/* <img
+                        src={`${}/assets/images/comment-user-1.png`}
                         alt="user"
-                      />
+                      /> */}
                     </div>
                     <div>
                       <p className="text-[18px] text-qblack font-medium">
@@ -143,6 +143,7 @@ export default function About() {
                   </div>
                 </div>
               </div>
+              {/* process.env.PUBLIC_URL */}
               <div className="item h-[385px] bg-primarygray sm:px-10 sm:py-9 p-2">
                 <div className="flex flex-col justify-between h-full">
                   <div className="rating flex space-x-1 items-center">
@@ -160,10 +161,10 @@ export default function About() {
                   </div>
                   <div className="flex items-center space-x-2.5 mt-3">
                     <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
-                      <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/comment-user-1.png`}
+                      {/* <img
+                        src={`${}/assets/images/comment-user-1.png`}
                         alt="user"
-                      />
+                      /> */}
                     </div>
                     <div>
                       <p className="text-[18px] text-qblack font-medium">
@@ -191,10 +192,10 @@ export default function About() {
                   </div>
                   <div className="flex items-center space-x-2.5 mt-3">
                     <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
-                      <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/comment-user-1.png`}
+                      {/* <img
+                        src={`${}/assets/images/comment-user-1.png`}
                         alt="user"
-                      />
+                      /> */}
                     </div>
                     <div>
                       <p className="text-[18px] text-qblack font-medium">
@@ -222,10 +223,10 @@ export default function About() {
                   </div>
                   <div className="flex items-center space-x-2.5 mt-3">
                     <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
-                      <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/comment-user-1.png`}
+                      {/* <img
+                        src={`${}/assets/images/comment-user-1.png`}
                         alt="user"
-                      />
+                      /> */}
                     </div>
                     <div>
                       <p className="text-[18px] text-qblack font-medium">
