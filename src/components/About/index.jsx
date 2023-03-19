@@ -76,14 +76,13 @@ export default function About() {
                   What is e-commerce business?
                 </h1>
                 <p className="text-[15px] text-qgraytwo leading-7 mb-2.5">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries but
-                  also the on leap into electronic typesetting.
+                  Welcome to Wayforward Booth, your go-to ecommerce website for all your shopping needs.
+                  At Wayforward Booth, we strive to provide our customers with a seamless online shopping experience.
+                  Our vast inventory includes a wide range of products from fashion and accessories to electronics and home goods.
+                  With competitive prices and fast shipping, Wayforward Booth is committed to delivering value to our customers.
+                  Our dedicated customer service team is available to assist with any questions or concerns you may have, making your shopping experience with us stress-free and enjoyable.
                 </p>
-                <ul className="text-[15px] text-qgraytwo leading-7 list-disc ml-5 mb-5">
+                {/* <ul className="text-[15px] text-qgraytwo leading-7 list-disc ml-5 mb-5">
                   <li>slim body with metal cover</li>
                   <li>
                     latest Intel Core i5-1135G7 processor (4 cores / 8 threads)
@@ -93,7 +92,7 @@ export default function About() {
                     NVIDIA GeForce MX350 2GB GDDR5 graphics card backlit
                     keyboard
                   </li>
-                </ul>
+                </ul> */}
 
                 <Link to="/contact">
                   <div className="w-[121px] h-10">
