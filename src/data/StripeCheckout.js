@@ -106,7 +106,7 @@ const CheckoutForm = () => {
         <article>
           <h4 className='user'>Hello, {myUser && myUser.name}</h4>
           <p className='total_price'>Your total is: {country === "Nigeria" ? (formatPrice(shipping_fee + (total_amount * nairavalue))) : formatPrice(shipping_fee + total_amount)}</p>
-          <p>Test Card Number : 4242 4242 4242 4242</p>
+          {/* <p>Test Card Number : 4242 4242 4242 4242</p> */}
         </article>
       )}
       <div className='paydiv'>

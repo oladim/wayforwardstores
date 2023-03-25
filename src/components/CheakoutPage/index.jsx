@@ -2,6 +2,7 @@ import React from 'react';
 import { useCartContext } from '../../data/cart_context';
 import { useGlobalContext } from '../../data/context';
 import { useUserContext } from '../../data/user_context';
+import { formatPrice } from '../../data/utils/helpers';
 import InputCom from "../Helpers/InputCom";
 import PageTitle from "../Helpers/PageTitle";
 import Layout from "../Partials/Layout";
@@ -217,7 +218,7 @@ export default function CheakoutPage() {
                             </div>
                             <div>
                               <span className="text-[15px] text-qblack font-medium">
-                                {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (item.price * item.amount * nairavalue).toFixed(2) : (item.price * item.amount).toFixed(2)}
+                                {country === "Nigeria" ? formatPrice((item.price * item.amount * nairavalue).toFixed(2)) : formatPrice((item.price * item.amount).toFixed(2))}
                               </span>
                             </div>
                           </div>
@@ -293,7 +294,7 @@ export default function CheakoutPage() {
                         SUBTOTAL
                       </p>
                       <p className="text-[15px] font-medium text-qblack uppercase">
-                        {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (total_amount * nairavalue).toFixed(2) : (total_amount).toFixed(2)}
+                        {country === "Nigeria" ? formatPrice((total_amount * nairavalue).toFixed(2)) : formatPrice((total_amount).toFixed(2))}
                       </p>
                     </div>
                   </div>
@@ -320,10 +321,10 @@ export default function CheakoutPage() {
                   <div className="mt-[30px]">
                     <div className=" flex justify-between mb-5">
                       <p className="text-2xl font-medium text-qblack">Total</p>
-                      <p className="text-2xl font-medium text-qred">{country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (total_amount * nairavalue).toFixed(2) : (total_amount).toFixed(2)}</p>
+                      <p className="text-2xl font-medium text-qred">{country === "Nigeria" ? formatPrice((total_amount * nairavalue).toFixed(2)) : formatPrice((total_amount).toFixed(2))}</p>
                     </div>
                   </div>
-                  <div className="shipping mt-[30px]">
+                  {/* <div className="shipping mt-[30px]">
                     <ul className="flex flex-col space-y-1">
                       <li className=" mb-5">
                         <div className="flex space-x-2.5 items-center mb-4">
@@ -384,7 +385,7 @@ export default function CheakoutPage() {
                         </div>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
 
                   <div className="w-full h-[50px] black-btn flex justify-center items-center">
                     {myUser ? <a href="/checkoutpayment"><span className="text-sm font-semibold cursor-pointer">

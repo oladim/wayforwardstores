@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
-import data from "../../data/products.json";
+import { useEffect, useRef, useState } from "react";
+import { useFilterContext } from "../../data/filter_context";
+// import data from "../../data/products.json";
 import BreadcrumbCom from "../BreadcrumbCom";
 import ProductCardStyleOne from "../Helpers/Cards/ProductCardStyleOne";
 import DataIteration from "../Helpers/DataIteration";
@@ -10,6 +11,11 @@ import Reviews from "./Reviews";
 import SallerInfo from "./SallerInfo";
 
 export default function SingleProductPage() {
+
+  const { filtered_products } = useFilterContext();
+
+
+
   const [tab, setTab] = useState("des");
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
@@ -19,6 +25,8 @@ export default function SingleProductPage() {
   const [message, setMessage] = useState("");
   const [reviewLoading, setLoading] = useState(false);
   const reviewElement = useRef(null);
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
   const [report, setReport] = useState(false);
   const [commnets, setComments] = useState([
     {
@@ -82,6 +90,11 @@ export default function SingleProductPage() {
     }, 2000);
   };
 
+  const data = filtered_products.filter((item) => item.category === category)
+  useEffect(() => {
+
+  }, [data, category])
+
   return (
     <>
       <Layout childrenClasses="pt-0 pb-0">
@@ -99,7 +112,7 @@ export default function SingleProductPage() {
             </div>
             <div className="w-full bg-white pb-[60px]">
               <div className="container-x mx-auto">
-                <ProductView reportHandler={() => setReport(!report)} />
+                <ProductView setCategory={setCategory} setDescription={setDescription} reportHandler={() => setReport(!report)} />
               </div>
             </div>
           </div>
@@ -114,17 +127,16 @@ export default function SingleProductPage() {
                   <li>
                     <span
                       onClick={() => setTab("des")}
-                      className={`py-[15px] sm:text-[15px] text-sm sm:block border-b font-medium cursor-pointer ${
-                        tab === "des"
-                          ? "border-qyellow text-qblack "
-                          : "border-transparent text-qgray"
-                      }`}
+                      className={`py-[15px] sm:text-[15px] text-sm sm:block border-b font-medium cursor-pointer ${tab === "des"
+                        ? "border-qyellow text-qblack "
+                        : "border-transparent text-qgray"
+                        }`}
                     >
                       Description
                     </span>
                   </li>
                   <li>
-                    <span
+                    {/* <span
                       onClick={() => setTab("review")}
                       className={`py-[15px] sm:text-[15px] text-sm sm:block border-b font-medium cursor-pointer ${
                         tab === "review"
@@ -133,19 +145,18 @@ export default function SingleProductPage() {
                       }`}
                     >
                       Reviews
-                    </span>
+                    </span> */}
                   </li>
                   <li>
-                    <span
+                    {/* <span
                       onClick={() => setTab("info")}
-                      className={`py-[15px] sm:text-[15px] text-sm sm:block border-b font-medium cursor-pointer ${
-                        tab === "info"
+                      className={`py-[15px] sm:text-[15px] text-sm sm:block border-b font-medium cursor-pointer ${tab === "info"
                           ? "border-qyellow text-qblack "
                           : "border-transparent text-qgray"
-                      }`}
+                        }`}
                     >
                       Seller Info
-                    </span>
+                    </span> */}
                   </li>
                 </ul>
               </div>
@@ -156,27 +167,16 @@ export default function SingleProductPage() {
                 {tab === "des" && (
                   <div data-aos="fade-up" className="w-full tab-content-item">
                     <h6 className="text-[18px] font-medium text-qblack mb-2">
-                      Introduction
+
                     </h6>
                     <p className="text-[15px] text-qgray text-normal mb-10">
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book. It has survived not only five
-                      centuries but also the on leap into electronic
-                      typesetting, remaining essentially unchanged. It wasn’t
-                      popularised in the 1960s with the release of Letraset
-                      sheets containing Lorem Ipsum passages, andei more
-                      recently with desktop publishing software like Aldus
-                      PageMaker including versions of Lorem Ipsum to make a type
-                      specimen book.
+                      {description}
                     </p>
                     <div>
-                      <h6 className="text-[18px] text-medium mb-4">
+                      {/* <h6 className="text-[18px] text-medium mb-4">
                         Features :
-                      </h6>
-                      <ul className="list-disc ml-[15px]">
+                      </h6> */}
+                      {/* <ul className="list-disc ml-[15px]">
                         <li className="font-normal text-qgray leading-9">
                           slim body with metal cover
                         </li>
@@ -191,7 +191,7 @@ export default function SingleProductPage() {
                           NVIDIA GeForce MX350 2GB GDDR5 graphics card backlit
                           keyboard, touchpad with gesture support
                         </li>
-                      </ul>
+                      </ul> */}
                     </div>
                   </div>
                 )}
@@ -242,9 +242,9 @@ export default function SingleProductPage() {
                   className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5"
                 >
                   <DataIteration
-                    datas={data.products}
-                    startLength={5}
-                    endLength={9}
+                    datas={data}
+                    startLength={0}
+                    endLength={data.length}
                   >
                     {({ datas }) => (
                       <div key={datas.id} className="item">

@@ -1,13 +1,10 @@
 import React, { useRef } from 'react';
 import { Link } from "react-router-dom";
-import BlogCard from "../Helpers/Cards/BlogCard";
 import Star from "../Helpers/icons/Star";
 import PageTitle from "../Helpers/PageTitle";
 import SimpleSlider from "../Helpers/SliderCom";
 import Layout from "../Partials/Layout";
 
-import blog from "../../data/blogs.json";
-import DataIteration from "../Helpers/DataIteration";
 
 export default function About() {
   const settings = {
@@ -73,7 +70,7 @@ export default function About() {
               </div>
               <div className="content flex-1">
                 <h1 className="text-[18px] font-medium text-qblack mb-2.5">
-                  What is e-commerce business?
+                  About Us
                 </h1>
                 <p className="text-[15px] text-qgraytwo leading-7 mb-2.5">
                   Welcome to Wayforward Booth, your go-to ecommerce website for all your shopping needs.
@@ -125,7 +122,7 @@ export default function About() {
                     <span className="text-[13px] text-qblack">(5.0)</span>
                   </div>
                   <div className="text-[15px] text-qgraytwo leading-[30px] text-justify line-clamp-6">
-                  I recently purchased a pair of shoes from Wayforward Booth and I am extremely satisfied with my purchase. The shoes arrived quickly and were exactly as described. They are comfortable, stylish and have quickly become my new go-to shoes!
+                    I recently purchased a pair of shoes from Wayforward Booth and I am extremely satisfied with my purchase. The shoes arrived quickly and were exactly as described. They are comfortable, stylish and have quickly become my new go-to shoes!
                   </div>
                   <div className="flex items-center space-x-2.5 mt-3">
                     <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
@@ -157,7 +154,7 @@ export default function About() {
                     <span className="text-[13px] text-qblack">(5.0)</span>
                   </div>
                   <div className="text-[15px] text-qgraytwo leading-[30px] text-justify line-clamp-6">
-                  I purchased a kitchen gadget from Wayforward Booth and I couldn't be happier with my purchase. It has made meal prep so much easier and the quality is top-notch. I highly recommend this product and Wayforward Booth to anyone in the market for a reliable ecommerce site
+                    I purchased a kitchen gadget from Wayforward Booth and I couldn't be happier with my purchase. It has made meal prep so much easier and the quality is top-notch. I highly recommend this product and Wayforward Booth to anyone in the market for a reliable ecommerce site
                   </div>
                   <div className="flex items-center space-x-2.5 mt-3">
                     <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
@@ -188,7 +185,7 @@ export default function About() {
                     <span className="text-[13px] text-qblack">(5.0)</span>
                   </div>
                   <div className="text-[15px] text-qgraytwo leading-[30px] text-justify line-clamp-6">
-                  I have ordered from Wayforward Booth multiple times and have always been impressed with their prompt delivery and excellent customer service. Their products are high-quality and their prices are unbeatable. I will continue to shop with them for all my online shopping needs!
+                    I have ordered from Wayforward Booth multiple times and have always been impressed with their prompt delivery and excellent customer service. Their products are high-quality and their prices are unbeatable. I will continue to shop with them for all my online shopping needs!
                   </div>
                   <div className="flex items-center space-x-2.5 mt-3">
                     <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
@@ -219,7 +216,7 @@ export default function About() {
                     <span className="text-[13px] text-qblack">(5.0)</span>
                   </div>
                   <div className="text-[15px] text-qgraytwo leading-[30px] text-justify line-clamp-6">
-                  I recently ordered a piece of jewelry from Wayforward Booth and was blown away by the quality and craftsmanship. The piece was even more beautiful in person and arrived in a timely manner. I highly recommend Wayforward Booth for anyone looking for unique and high-quality products.
+                    I recently ordered a piece of jewelry from Wayforward Booth and was blown away by the quality and craftsmanship. The piece was even more beautiful in person and arrived in a timely manner. I highly recommend Wayforward Booth for anyone looking for unique and high-quality products.
                   </div>
                   <div className="flex items-center space-x-2.5 mt-3">
                     <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
@@ -237,11 +234,11 @@ export default function About() {
                   </div>
                 </div>
               </div>
-             
-              
-              
-              
-             
+
+
+
+
+
             </SimpleSlider>
 
             <div className="slider-btns flex justify-center mt-[40px]">
@@ -496,9 +493,9 @@ export default function About() {
         <div className="blog-post-wrapper w-full mb-[30px]">
           <div className="container-x mx-auto">
             <div className="blog-post-title flex justify-center items-cente mb-[30px]">
-              <h1 className="text-3xl font-semibold text-qblack">
+              {/* <h1 className="text-3xl font-semibold text-qblack">
                 My Latest News
-              </h1>
+              </h1> */}
             </div>
 
             {/* <div className="blogs-wrapper w-full">

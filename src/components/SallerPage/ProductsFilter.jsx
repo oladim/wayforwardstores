@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import "react-input-range/lib/css/index.css";
 import { useFilterContext } from '../../data/filter_context';
+import { formatPrice } from '../../data/utils/helpers';
 import Checkbox from "../Helpers/Checkbox";
 import { getUniqueValues } from '../Helpers/unique';
 
@@ -498,7 +499,7 @@ export default function ProductsFilter({
             />
           </div>
           <p className="text-xs text-qblack font-400">
-            Price: ${0} - ${max_price}:  {price}
+            Price: {0} - {formatPrice(max_price)}:  {formatPrice(price)}
           </p>
         </div>
         <div className="filter-subject-item pb-10 border-b border-qgray-border mt-10">

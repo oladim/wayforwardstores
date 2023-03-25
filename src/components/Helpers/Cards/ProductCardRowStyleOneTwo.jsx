@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatPrice } from '../../../data/utils/helpers';
 import Compair from "../icons/Compair";
 import QuickViewIco from "../icons/QuickViewIco";
 import ThinLove from "../icons/ThinLove";
@@ -27,10 +28,10 @@ export default function ProductCardRowStyleOneTwo({ className, datas }) {
             </a>
             <p className="price flex space-x-2 items-center  mb-2.5">
               <span className="offer-price text-qred font-600 sm:text-[24px] text-base">
-                {datas.offer_price}
+                {formatPrice(datas.offer_price)}
               </span>
               <span className="main-price text-qgray line-through font-600 sm:text-[18px] text-base">
-                {datas.price}
+                {formatPrice(datas.price)}
               </span>
             </p>
             <button type="button" className="w-[116px] h-[40px]">

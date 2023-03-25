@@ -17,7 +17,7 @@ const defaultState = {
     naira_value:0,
     country: null,
     eur_usd: 0,
-    nairavalue: 0,
+    nairavalue: 750,
     eur_naira: 0,
     toggle: false,
        products_error: true,
@@ -108,9 +108,9 @@ var requestOptions = {
         getGeoInfo();
     },[])
        
-    useEffect(()=>{
-        fetchExchange();
-    },[])
+    // useEffect(()=>{
+    //     fetchExchange();
+    // },[])
 
        useEffect(()=>{
         getData(url);

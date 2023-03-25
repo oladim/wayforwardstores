@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCartContext } from "../../data/cart_context";
 import { useGlobalContext } from '../../data/context';
+import { formatPrice } from '../../data/utils/helpers';
 
 export default function Cart({ className }) {
 
@@ -38,7 +39,7 @@ export default function Cart({ className }) {
                         </p>
                         <p className="price">
                           <span className="offer-price text-qred font-600 text-[15px] ml-2">
-                            {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (item.price * nairavalue).toFixed(2) : item.price}
+                            {country === "Nigeria" ? formatPrice((item.price * nairavalue).toFixed(2)) : formatPrice(item.price)}
                           </span>
                         </p>
                       </div>
@@ -67,7 +68,7 @@ export default function Cart({ className }) {
           <div className="product-actions px-4 mb-[30px]">
             <div className="total-equation flex justify-between items-center mb-[28px]">
               <span className="text-[15px] font-500 text-qblack">Subtotal</span>
-              <span className="text-[15px] font-500 text-qred ">{country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (total_amount * nairavalue).toFixed(2) : total_amount.toFixed(2)}</span>
+              <span className="text-[15px] font-500 text-qred ">{country === "Nigeria" ? formatPrice((total_amount * nairavalue).toFixed(2)) : formatPrice(total_amount.toFixed(2))}</span>
             </div>
             <div className="product-action-btn">
               <a href="/cart">

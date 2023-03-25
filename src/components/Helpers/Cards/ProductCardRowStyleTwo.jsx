@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGlobalContext } from '../../../data/context';
+import { formatPrice } from '../../../data/utils/helpers';
 export default function ProductCardRowStyleTwo({ className, datas }) {
 
   const { country, nairavalue } = useGlobalContext();
@@ -26,11 +27,11 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
             </a>
 
             <p className="price">
-              <span className="main-price text-qgray line-through font-600 text-[18px]">
-                {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (datas.price * nairavalue).toFixed(2) : (datas.price).toFixed(2)}
+              <span className="main-price text-qgray line-through font-600 text-[10px]">
+                {country === "Nigeria" ? formatPrice((datas.price * nairavalue).toFixed(2)) : formatPrice((datas.price).toFixed(2))}
               </span>
-              <span className="offer-price text-qred font-600 text-[18px] ml-2">
-                {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (datas.offer_price * nairavalue).toFixed(2) : (datas.offer_price).toFixed(2)}
+              <span className="offer-price text-qred font-600 text-[13px] ml-2">
+                {country === "Nigeria" ? formatPrice((datas.offer_price * nairavalue).toFixed(2)) : formatPrice((datas.offer_price).toFixed(2))}
               </span>
             </p>
           </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCartContext } from "../../../data/cart_context";
 import { useGlobalContext } from '../../../data/context';
+import { formatPrice } from '../../../data/utils/helpers';
 import Compair from "../icons/Compair";
 import QuickViewIco from "../icons/QuickViewIco";
 import Star from "../icons/Star";
@@ -41,11 +42,11 @@ export default function ProductCardRowStyleTwo({ className, datas }) {
               </p>
             </a>
             <p className="price mb-[26px]">
-              <span className="main-price text-qgray line-through font-600 sm:text-[18px] text-base">
-                {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (datas.price * nairavalue).toFixed(2) : (datas.price).toFixed(2)}
+              <span className="main-price text-qgray line-through font-600 sm:text-[10px] text-base">
+                {country === "Nigeria" ? formatPrice((datas.price * nairavalue).toFixed(2)) : formatPrice((datas.price).toFixed(2))}
               </span>
-              <span className="offer-price text-qred font-600 sm:text-[18px] text-base ml-2">
-                {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (datas.offer_price * nairavalue).toFixed(2) : (datas.offer_price).toFixed(2)}
+              <span className="offer-price text-qred font-600 sm:text-[13px] text-base ml-2">
+                {country === "Nigeria" ? formatPrice((datas.offer_price * nairavalue).toFixed(2)) : formatPrice((datas.offer_price).toFixed(2))}
               </span>
             </p>
             <button type="button" className="w-[110px] h-[30px]" onClick={() => addToCart(datas.id, 1, datas)}>

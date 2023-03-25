@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCartContext } from "../../data/cart_context";
 import { useGlobalContext } from '../../data/context';
+import { formatPrice } from '../../data/utils/helpers';
 import InputQuantityCom from "../Helpers/InputQuantityCom";
 
 export default function ProductsTable({ className }) {
@@ -56,7 +57,7 @@ export default function ProductsTable({ className }) {
                 </td>
                 <td className="text-center py-4 px-2">
                   <div className="flex space-x-1 items-center justify-center">
-                    <span className="text-[15px] font-normal">{country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (item.price * nairavalue).toFixed(2) : (item.price).toFixed(2)}</span>
+                    <span className="text-[15px] font-normal">{country === "Nigeria" ? formatPrice((item.price * nairavalue).toFixed(2)) : formatPrice((item.price).toFixed(2))}</span>
                   </div>
                 </td>
                 <td className=" py-4">
@@ -66,7 +67,7 @@ export default function ProductsTable({ className }) {
                 </td>
                 <td className="text-right py-4">
                   <div className="flex space-x-1 items-center justify-center">
-                    <span className="text-[15px] font-normal">{country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? (item.price * item.amount * nairavalue).toFixed(2) : (item.price * item.amount).toFixed(2)}</span>
+                    <span className="text-[15px] font-normal">{country === "Nigeria" ? formatPrice((item.price * item.amount * nairavalue).toFixed(2)) : formatPrice((item.price * item.amount).toFixed(2))}</span>
                   </div>
                 </td>
                 <td className="text-right py-4">

@@ -6,11 +6,12 @@ import axios from 'axios';
 import { useParams } from "react-router-dom";
 import { useCartContext } from '../../data/cart_context';
 import { useGlobalContext } from "../../data/context";
+import { formatPrice } from '../../data/utils/helpers';
 import Star from "../Helpers/icons/Star";
 import Selectbox from "../Helpers/Selectbox";
 
 
-export default function ProductView({ className, reportHandler }) {
+export default function ProductView({ setCategory, setDescription, className, reportHandler }) {
   const url = 'https://mid-ray-airables-project.netlify.app/api/waystores?id='
   const { single_product_loading: loading, single_product_error: error, country, nairavalue } = useGlobalContext();
   const { addToCart } = useCartContext();
@@ -72,7 +73,8 @@ export default function ProductView({ className, reportHandler }) {
     try {
       const { data } = await axios.get(url);
       if (data) {
-        const { id, fields: { images, offer_price, price, title, review } } = data;
+        console.log(data);
+        const { id, fields: { images, offer_price, price, title, review, description, category } } = data;
         setData({
           images: images,
           offer_price: offer_price,
@@ -80,8 +82,11 @@ export default function ProductView({ className, reportHandler }) {
           title: title,
           review: review,
           id: id,
-          url: images[0].url
+          url: images[0].url,
+          category: category
         });
+        setDescription(description);
+        setCategory(category);
       }
 
       // dispatch({ type: "GET_SINGLE_PRODUCT_SUCCESS", payload: data })
@@ -99,6 +104,7 @@ export default function ProductView({ className, reportHandler }) {
 
   const [src, setSrc] = useState(data.images ? data.images["0"].url : "");
   const changeImgHandler = (current) => {
+    console.log(current);
     setSrc(current);
   };
   const [quantity, setQuantity] = useState(1);
@@ -120,7 +126,7 @@ export default function ProductView({ className, reportHandler }) {
         <div className="w-full">
           <div className="w-full h-[600px] border border-qgray-border flex justify-center items-center overflow-hidden relative mb-3">
             <img
-              src={data.images ? data.images["0"].url : "#"}
+              src={src ? src : data.images ? data.images["0"].url : "#"}
               alt=""
               className="object-fit h-full w-full"
             />
@@ -181,9 +187,9 @@ export default function ProductView({ className, reportHandler }) {
 
           <div data-aos="fade-up" className="flex space-x-2 items-center mb-7">
             <span className="text-sm font-500 text-qgray line-through mt-2">
-              {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? parseFloat((data.price * nairavalue)).toFixed(2) : parseFloat((data.price)).toFixed(2)}
+              {country === "Nigeria" ? formatPrice(parseFloat((data.price * nairavalue)).toFixed(2)) : formatPrice(parseFloat((data.price)).toFixed(2))}
             </span>
-            <span className="text-2xl font-500 text-qred">{country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? parseFloat((data.offer_price * nairavalue)).toFixed(2) : parseFloat((data.offer_price)).toFixed(2)}</span>
+            <span className="text-2xl font-500 text-qred">{country === "Nigeria" ? formatPrice(parseFloat((data.offer_price * nairavalue)).toFixed(2)) : formatPrice(parseFloat((data.offer_price)).toFixed(2))}</span>
           </div>
 
           <p
@@ -320,13 +326,13 @@ export default function ProductView({ className, reportHandler }) {
 
           <div data-aos="fade-up" className="mb-[20px]">
             <p className="text-[13px] text-qgray leading-7">
-              <span className="text-qblack">Category :</span> Kitchen
+              <span className="text-qblack">Category :</span> {data.category}
             </p>
-            <p className="text-[13px] text-qgray leading-7">
+            {/* <p className="text-[13px] text-qgray leading-7">
               <span className="text-qblack">Tags :</span> Beer, Foamer
-            </p>
+            </p> */}
             <p className="text-[13px] text-qgray leading-7">
-              <span className="text-qblack">SKU:</span> KE-91039
+              <span className="text-qblack">SKU:</span> {data.id}
             </p>
           </div>
 
@@ -334,7 +340,7 @@ export default function ProductView({ className, reportHandler }) {
             data-aos="fade-up"
             className="flex space-x-2 items-center mb-[20px]"
           >
-            <span>
+            {/* <span>
               <svg
                 width="12"
                 height="13"
@@ -347,15 +353,15 @@ export default function ProductView({ className, reportHandler }) {
                   fill="#EB5757"
                 />
               </svg>
-            </span>
+            </span> */}
 
-            <button
+            {/* <button
               type="button"
               onClick={reportHandler}
               className="text-qred font-semibold text-[13px]"
             >
               Report This Item
-            </button>
+            </button> */}
           </div>
 
           <div

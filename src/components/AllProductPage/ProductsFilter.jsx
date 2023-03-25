@@ -485,7 +485,7 @@ export default function ProductsFilter({
             />
           </div>
           <p className="text-xs text-qblack font-400">
-            Price: ${volume.min} - ${volume.max}
+            Price: {volume.min} - {volume.max}
           </p>
         </div>
         <div className="filter-subject-item pb-10 border-b border-qgray-border mt-10">
@@ -666,8 +666,8 @@ export default function ProductsFilter({
               <span
                 onClick={() => filterstorage("64GB")}
                 className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "64GB"
-                    ? "bg-qyellow text-qblack border-none"
-                    : " text-qgray "
+                  ? "bg-qyellow text-qblack border-none"
+                  : " text-qgray "
                   }`}
               >
                 64GB
@@ -675,8 +675,8 @@ export default function ProductsFilter({
               <span
                 onClick={() => filterstorage("128GB")}
                 className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "128GB"
-                    ? "bg-qyellow text-qblack border-none"
-                    : " text-qgray "
+                  ? "bg-qyellow text-qblack border-none"
+                  : " text-qgray "
                   }`}
               >
                 128GB
@@ -684,8 +684,8 @@ export default function ProductsFilter({
               <span
                 onClick={() => filterstorage("256GB")}
                 className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "256GB"
-                    ? "bg-qyellow text-qblack border-none"
-                    : " text-qgray "
+                  ? "bg-qyellow text-qblack border-none"
+                  : " text-qgray "
                   }`}
               >
                 256GB
@@ -693,8 +693,8 @@ export default function ProductsFilter({
               <span
                 onClick={() => filterstorage("512GB")}
                 className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "512GB"
-                    ? "bg-qyellow text-qblack border-none"
-                    : " text-qgray "
+                  ? "bg-qyellow text-qblack border-none"
+                  : " text-qgray "
                   }`}
               >
                 512GB
@@ -702,8 +702,8 @@ export default function ProductsFilter({
               <span
                 onClick={() => filterstorage("1024GB")}
                 className={` font-400 border border-qgray-border text-xs px-[14px] py-[6px] cursor-pointer mb-[5px] ${storage === "1024GB"
-                    ? "bg-qyellow text-qblack border-none"
-                    : " text-qgray "
+                  ? "bg-qyellow text-qblack border-none"
+                  : " text-qgray "
                   }`}
               >
                 1024GB

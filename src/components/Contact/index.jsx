@@ -106,7 +106,7 @@ export default function Contact() {
                     Email
                   </p>
                   <p className="text-[15px] text-black leading-[30px] text-center">
-                    contact@wayforwardstores.com
+                    contact@wayforwardbooth.com
                   </p>
                   {/* <p className="text-[15px] text-black leading-[30px] text-center">
                     rafiqulislamsuvobd@gmail.com
@@ -186,7 +186,7 @@ export default function Contact() {
                 <div className="mb-4">
                   <InputCom
                     label="Email Address*"
-                    placeholder="contact@wayforwardstores.com"
+                    placeholder="contact@wayforwardbooth.com"
                     name="email"
                     inputClasses="h-[50px]"
                   />

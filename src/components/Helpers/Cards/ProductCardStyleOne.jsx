@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCartContext } from "../../../data/cart_context";
 import { useGlobalContext } from '../../../data/context';
+import { formatPrice } from '../../../data/utils/helpers';
 import Compair from "../icons/Compair";
 import QuickViewIco from "../icons/QuickViewIco";
 import Star from "../icons/Star";
@@ -96,11 +97,11 @@ export default function ProductCardStyleOne({ datas }) {
           </p>
         </a>
         <p className="price">
-          <span className="main-price text-qgray line-through font-600 text-[18px]">
-            {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? parseFloat((datas.price * nairavalue)).toFixed(2) : parseFloat((datas.price)).toFixed(2)}
+          <span className="main-price text-qgray line-through font-600 text-[10px]">
+            {country === "Nigeria" ? formatPrice(parseFloat((datas.price * nairavalue)).toFixed(2)) : formatPrice(parseFloat((datas.price)).toFixed(2))}
           </span>
-          <span className="offer-price text-qred font-600 text-[18px] ml-2">
-            {country === "Nigeria" ? "₦" : "$"}{country === "Nigeria" ? parseFloat((datas.offer_price * nairavalue)).toFixed(2) : parseFloat((datas.offer_price)).toFixed(2)}
+          <span className="offer-price text-qred font-600 text-[13px] ml-2">
+            {country === "Nigeria" ? formatPrice(parseFloat((datas.offer_price * nairavalue)).toFixed(2)) : formatPrice(parseFloat((datas.offer_price)).toFixed(2))}
           </span>
         </p>
       </div>
