@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import "react-input-range/lib/css/index.css";
+import { useGlobalContext } from '../../data/context';
 import { useFilterContext } from '../../data/filter_context';
-import { formatPrice } from '../../data/utils/helpers';
 import Checkbox from "../Helpers/Checkbox";
 import { getUniqueValues } from '../Helpers/unique';
 
@@ -17,8 +17,9 @@ export default function ProductsFilter({
   filterToggleHandler,
 }) {
 
-  const { updateFilters, all_products: products, filters: { max_price, price } } = useFilterContext();
+  const { updateFilters, all_products: products, filters: { max_price, price, min_price } } = useFilterContext();
   const brands = getUniqueValues(products, 'category');
+  const { country, nairavalue } = useGlobalContext();
 
 
   useEffect(() => {
@@ -492,14 +493,15 @@ export default function ProductsFilter({
           <div className="price-range mb-5">
             <input type="range"
               name='price'
-              maxValue={max_price}
-              minValue={0}
-              value={price}
+              maxValue={country === "Nigeria" ? (max_price * nairavalue) : (max_price)}
+              minValue={country === "Nigeria" ? (min_price * nairavalue) : (min_price)}
+              value={price * 1000}
               onChange={updateFilters}
             />
           </div>
           <p className="text-xs text-qblack font-400">
-            Price: {0} - {formatPrice(max_price)}:  {formatPrice(price)}
+            Price: {country === "Nigeria" ? (min_price * nairavalue) : (min_price)} - {country === "Nigeria" ? (max_price * nairavalue) : (max_price)} : {country === "Nigeria" ? (price * nairavalue) : (price)}
+
           </p>
         </div>
         <div className="filter-subject-item pb-10 border-b border-qgray-border mt-10">

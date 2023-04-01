@@ -7,12 +7,14 @@ const filter_reducer = (state, action) => {
   if (action.type === LOAD_PRODUCTS) {
     let maxPrice = action.payload.map((p) => p.offer_price)
     maxPrice = Math.max(...maxPrice)
+    let minPrice = action.payload.map((p) => p.offer_price)
+    minPrice = Math.min(...minPrice)
 
     return {
       ...state,
       all_products: [...action.payload],
       filtered_products: [...action.payload],
-      filters: { ...state.filters, max_price: maxPrice, price: maxPrice },
+      filters: { ...state.filters, max_price: maxPrice, price: maxPrice, min_price: minPrice },
     }
   }
   if (action.type === SET_GRIDVIEW) {

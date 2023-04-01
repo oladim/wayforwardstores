@@ -13,6 +13,8 @@ export default function AllProductPage() {
   const { loading } = useGlobalContext();
   const { filtered_products } = useFilterContext();
 
+  console.log(filtered_products);
+
 
   const [filters, setFilter] = useState({
     mobileLaptop: false,
@@ -158,8 +160,8 @@ export default function AllProductPage() {
                 <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 xl:gap-[30px] gap-5 mb-[40px]">
                   <DataIteration
                     datas={filtered_products}
-                    startLength={6}
-                    endLength={15}
+                    startLength={0}
+                    endLength={filtered_products.length - 1}
                   >
                     {({ datas }) => (
                       <div data-aos="fade-up" key={datas.id}>

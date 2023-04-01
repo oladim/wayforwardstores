@@ -18,6 +18,8 @@ export default function SectionStyleOne({
     (value, index, array) => array.indexOf(value) === index
   );
 
+
+
   const { filter_products, loading } = useGlobalContext();
 
 
@@ -39,7 +41,7 @@ export default function SectionStyleOne({
               <CategoryCard
                 background={categoryBackground}
                 title={categoryTitle}
-                brands={filterBrands}
+                brands={filterBrands.slice(0, 5)}
               />
             </div>
             <DataIteration

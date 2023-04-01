@@ -7,8 +7,8 @@ import { useParams } from "react-router-dom";
 import { useCartContext } from '../../data/cart_context';
 import { useGlobalContext } from "../../data/context";
 import { formatPrice } from '../../data/utils/helpers';
-import Star from "../Helpers/icons/Star";
 import Selectbox from "../Helpers/Selectbox";
+import Star from "../Helpers/icons/Star";
 
 
 export default function ProductView({ setCategory, setDescription, className, reportHandler }) {
@@ -128,7 +128,7 @@ export default function ProductView({ setCategory, setDescription, className, re
             <img
               src={src ? src : data.images ? data.images["0"].url : "#"}
               alt=""
-              className="object-fit h-full w-full"
+              className="object-cover h-full w-full"
             />
             <div className="w-[80px] h-[80px] rounded-full bg-qyellow text-qblack flex justify-center items-center text-xl font-medium absolute left-[30px] top-[30px]">
               <span>-{parseInt(((data.price - data.offer_price) / data.price) * 100)}%</span>
@@ -160,7 +160,7 @@ export default function ProductView({ setCategory, setDescription, className, re
             data-aos="fade-up"
             className="text-qgray text-xs font-normal uppercase tracking-wider mb-2 inline-block"
           >
-            Mobile Phones
+            {data.category}
           </span>
           <p
             data-aos="fade-up"

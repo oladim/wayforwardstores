@@ -25,7 +25,8 @@ export default function ProductCardStyleOne({ datas }) {
         className="product-card-img w-full h-[280px]"
         style={{
           background: `url(${datas.url}) no-repeat center`,
-          backgroundSize: "80%"
+          backgroundSize: "80%",
+
         }}
       >
         {/* product available progress */}

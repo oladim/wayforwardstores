@@ -20,8 +20,8 @@ const initialState = {
     // company: 'all',
     // category: 'all',
     // color: 'all',
-    // min_price: 0,
-    // max_price: 0,
+    min_price: 0,
+    max_price: 0,
     // price: 0,
     // shipping: false,
   },
@@ -65,7 +65,8 @@ export const FilterProvider = ({ children }) => {
     //   value = e.target.dataset.color
     // }
     if (name === 'price') {
-      value = Number(value)
+      value = Number(value);
+      console.log("price, value", name, value)
     }
     // if (name === 'shipping') {
     //   value = e.target.checked
