@@ -1,5 +1,6 @@
 import React from 'react';
 export default function CategoryCard({ background, title, brands = [] }) {
+
   return (
     <div
       className="category-card-wrappwer w-full h-full p-[30px]"
