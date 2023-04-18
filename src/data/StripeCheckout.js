@@ -5,28 +5,28 @@ import {
 import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Layout from '../components/Partials/Layout'
 import { useCartContext } from './cart_context'
 import { useGlobalContext } from './context'
 import { useUserContext } from './user_context'
 import { formatPrice } from './utils/helpers'
-// import { useHistory } from 'react-router-dom'
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
-console.log(promise);
+
 
 const CheckoutForm = () => {
   const { cart, total_amount, shipping_fee, clearCart } = useCartContext()
   const { myUser } = useUserContext()
   const {country, nairavalue}  = useGlobalContext();
-  // const history = useHistory()
+  const navigate = useNavigate();
   // STRIPE STUFF
   const [succeeded, setSucceeded] = useState(false)
   const [error, setError] = useState(null)
   const [processing, setProcessing] = useState('')
   const [disabled, setDisabled] = useState(true)
-  const [clientSecret, setClientSecret] = useState('')
+  const [clientSecret, setClientSecret] = useState('yy')
   const stripe = useStripe()
   const elements = useElements()
 
@@ -54,17 +54,19 @@ const CheckoutForm = () => {
         '/.netlify/functions/create-payment-intent',
         JSON.stringify({ cart, shipping_fee, total_amount })
       )
-        console.log("client secret", data.clientSecret)
+        console.log("client secret", data)
       setClientSecret(data.clientSecret)
     } catch (error) {
-      // console.log(error.response)
+      console.log(error.response)
     }
   }
-
+console.log(clientSecret);
   useEffect(() => {
     createPaymentIntent()
     // eslint-disable-next-line
   }, [])
+
+
 
   const handleChange = async (event) => {
     setDisabled(event.empty)
@@ -87,7 +89,7 @@ const CheckoutForm = () => {
       setSucceeded(true)
       setTimeout(() => {
         clearCart()
-        // history.push('/')
+        navigate('/')
       }, 10000)
     }
   }
