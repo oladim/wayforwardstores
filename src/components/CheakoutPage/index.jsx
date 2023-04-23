@@ -1,16 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCartContext } from '../../data/cart_context';
 import { useGlobalContext } from '../../data/context';
 import { useUserContext } from '../../data/user_context';
 import { formatPrice } from '../../data/utils/helpers';
-import InputCom from "../Helpers/InputCom";
 import PageTitle from "../Helpers/PageTitle";
 import Layout from "../Partials/Layout";
+import { countries } from './countries';
 
 export default function CheakoutPage() {
-  const { cart, total_amount } = useCartContext();
+  const { cart, total_amount, addCustomerData, customerDetails } = useCartContext();
   const { country, nairavalue } = useGlobalContext();
   const { loginWithRedirect, myUser, logout } = useUserContext();
+  const [selectedCountry, setSelectedCountry] = useState('Nigeria');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
+
+  const handleCountryChange = (event) => {
+    setSelectedCountry(event.target.value);
+  };
+
+  const changeText = (event) => {
+    setFirstName(event.target.value);
+  };
+
+  const formFilled = customerDetails || (firstName.length > 0 && lastName.length > 0 && email.length > 0 && phone.length > 0 && address.length > 0 && selectedCountry.length > 0);
+
+  const customerData = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    phone: phone,
+    address: address,
+    selectedCountry: selectedCountry
+  }
+
+  const customerDataProcess = () => {
+    console.log("from checkoutpage", customerData);
+    addCustomerData(customerData);
+  }
+
+
+  useEffect(() => {
+
+  }, [formFilled])
   return (
     <Layout childrenClasses="pt-0 pb-0">
       <div className="checkout-page-wrapper w-full bg-white pb-[60px]">
@@ -51,76 +86,129 @@ export default function CheakoutPage() {
             <div className="w-full lg:flex lg:space-x-[30px]">
               <div className="lg:w-1/2 w-full">
                 <h1 className="sm:text-2xl text-xl text-qblack font-medium mb-5">
-                  Billing Details
+                  Shipping Details
                 </h1>
                 <div className="form-area">
                   <form>
                     <div className="sm:flex sm:space-x-5 items-center mb-6">
                       <div className="sm:w-1/2  mb-5 sm:mb-0">
-                        <InputCom
-                          label="First Name*"
-                          placeholder="First Name"
-                          inputClasses="w-full h-[50px]"
-                        />
+
+                        <label
+                          className="input-label capitalize block  text-qgray text-[13px] font-normal"
+                          htmlFor={name}
+                        > First Name
+                        </label>
+                        <div className='input-wrapper border border-qgray-border w-full h-full overflow-hidden relative'>
+                          <input
+                            placeholder="First Name"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                          />
+                        </div>
                       </div>
                       <div className="flex-1">
-                        <InputCom
+                        <label
+                          className="input-label capitalize block  text-qgray text-[13px] font-normal"
+                          htmlFor={name}
+                        > Last Name
+                        </label>
+                        <div className='input-wrapper border border-qgray-border w-full h-full overflow-hidden relative'>
+                          <input
+                            placeholder="Last Name"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                          />
+                        </div>
+                        {/* <InputCom
                           label="Last Name*"
                           placeholder="Last Name"
                           inputClasses="w-full h-[50px]"
-                        />
+                        /> */}
                       </div>
                     </div>
                     <div className="flex space-x-5 items-center mb-6">
                       <div className="w-1/2">
-                        <InputCom
+                        <label
+                          className="input-label capitalize block  text-qgray text-[13px] font-normal"
+                          htmlFor={name}
+                        > Email Address
+                        </label>
+                        <div className='input-wrapper border border-qgray-border w-full h-full overflow-hidden relative'>
+                          <input
+                            placeholder="Last Name"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                          />
+                        </div>
+                        {/* <InputCom
                           label="Email Address*"
-                          placeholder="account@domain.com"
                           inputClasses="w-full h-[50px]"
-                        />
+                          type='email'
+                        /> */}
                       </div>
                       <div className="flex-1">
-                        <InputCom
+                        <label
+                          className="input-label capitalize block  text-qgray text-[13px] font-normal"
+                          htmlFor={name}
+                        > Phone Number
+                        </label>
+                        <div className='input-wrapper border border-qgray-border w-full h-full overflow-hidden relative'>
+                          <input
+                            placeholder="Last Name"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                          />
+                        </div>
+                        {/* <InputCom
                           label="Phone Number*"
-                          placeholder="+234-80*********"
                           inputClasses="w-full h-[50px]"
-                        />
+                        /> */}
                       </div>
                     </div>
                     <div className="mb-6">
                       <h1 className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal">
                         Country*
                       </h1>
-                      <div className="w-full h-[50px] border border-[#EDEDED] px-5 flex justify-between items-center mb-2">
-                        <span className="text-[13px] text-qgraytwo">
-                          Select Country
-                        </span>
-                        <span>
-                          <svg
-                            width="11"
-                            height="7"
-                            viewBox="0 0 11 7"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M5.4 6.8L0 1.4L1.4 0L5.4 4L9.4 0L10.8 1.4L5.4 6.8Z"
-                              fill="#222222"
-                            ></path>
-                          </svg>
-                        </span>
-                      </div>
+
+
+
+
+                      <select id="country" value={selectedCountry} onChange={handleCountryChange} className="w-full h-[50px] border border-[#EDEDED] px-5 flex justify-between items-center mb-2">
+                        {countries.map((country) => (
+                          <option key={country} value={country}>
+                            {country}
+                          </option>
+                        ))}
+                      </select>
+
                     </div>
                     <div className=" mb-6">
                       <div className="w-full">
-                        <InputCom
+                        <label
+                          className="input-label capitalize block  text-qgray text-[13px] font-normal"
+                          htmlFor={name}
+                        > Full Address
+                        </label>
+                        <div className='input-wrapper border border-qgray-border w-full h-full overflow-hidden relative'>
+                          <input
+                            placeholder="Last Name"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
+                          />
+                        </div>
+                        {/* <InputCom
                           label="Address*"
-                          placeholder="your address here"
+                          placeholder="Full Address"
                           inputClasses="w-full h-[50px]"
-                        />
+                        /> */}
                       </div>
                     </div>
-                    <div className="flex space-x-5 items-center mb-6">
+                    {/* <div className="flex space-x-5 items-center mb-6">
                       <div className="w-1/2">
                         <h1 className="input-label capitalize block  mb-2 text-qgray text-[13px] font-normal">
                           Town / City*
@@ -152,8 +240,8 @@ export default function CheakoutPage() {
                           inputClasses="w-full h-[50px]"
                         />
                       </div>
-                    </div>
-                    <div className="flex space-x-2 items-center mb-10">
+                    </div> */}
+                    {/* <div className="flex space-x-2 items-center mb-10">
                       <div>
                         <input type="checkbox" name="" id="create" />
                       </div>
@@ -163,8 +251,8 @@ export default function CheakoutPage() {
                       >
                         Create an account?
                       </label>
-                    </div>
-                    <div>
+                    </div> */}
+                    {/* <div>
                       <h1 className="text-2xl text-qblack font-medium mb-3">
                         Billing Details
                       </h1>
@@ -179,7 +267,13 @@ export default function CheakoutPage() {
                           Ship to a different address
                         </label>
                       </div>
-                    </div>
+                    </div> */}
+
+                    <span style={{ cursor: "pointer" }} onClick={() => addCustomerData(customerData)}>Change Address</span>
+                    {customerDetails ? (<div style={{ marginTop: 30, width: "90%" }}>
+                      <span style={{ fontStyle: "italic" }}>Current Shipping Details</span>
+                      <p style={{ fontSize: 12 }}>{customerDetails ? customerDetails.address : null}</p>
+                    </div>) : null}
                   </form>
                 </div>
               </div>
@@ -388,11 +482,13 @@ export default function CheakoutPage() {
                   </div> */}
 
                   <div className="w-full h-[50px] black-btn flex justify-center items-center">
-                    {myUser ? <a href="/checkoutpayment"><span className="text-sm font-semibold cursor-pointer">
+                    {/* {myUser ?  */}
+                    <a href={formFilled ? `/checkoutpayment` : null}><span className="text-sm font-semibold cursor-pointer">
                       Place Order Now
-                    </span></a> : <span className="cursor-pointer" onClick={loginWithRedirect}>Login to checkout</span>}
+                    </span></a>
+                    {/* <span className="cursor-pointer" onClick={loginWithRedirect}>Login to checkout</span>} */}
                   </div>
-
+                  {!formFilled && <span className='flex justify-center items-center'>Complete the form to proceed</span>}
                 </div>
               </div>
             </div>

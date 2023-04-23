@@ -17,7 +17,17 @@ const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
 
 
 const CheckoutForm = () => {
-  const { cart, total_amount, shipping_fee, clearCart } = useCartContext()
+  const { cart, total_amount, shipping_fee, clearCart, customerDetails } = useCartContext();
+ 
+
+  const boughtItems = cart.map((item)=>{
+    return {
+      productID: item.id,
+      productTitle: item.title,
+      productQuantity: item.amount
+    }
+  })
+
   const { myUser } = useUserContext()
   const {country, nairavalue}  = useGlobalContext();
   const navigate = useNavigate();
@@ -50,21 +60,22 @@ const CheckoutForm = () => {
 
   const createPaymentIntent = async () => {
     try {
+     
       const { data } = await axios.post(
         '/.netlify/functions/create-payment-intent',
-        JSON.stringify({ cart, shipping_fee, total_amount })
+        JSON.stringify({ boughtItems, shipping_fee, total_amount, customerDetails })
       )
-        console.log("client secret", data)
+       
       setClientSecret(data.clientSecret)
     } catch (error) {
       console.log(error.response)
     }
   }
-console.log(clientSecret);
+
   useEffect(() => {
     createPaymentIntent()
     // eslint-disable-next-line
-  }, [])
+  }, [total_amount])
 
 
 

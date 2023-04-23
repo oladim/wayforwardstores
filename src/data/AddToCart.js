@@ -8,7 +8,7 @@ import AmountButtons from './AmountButtons';
 const AddToCart = ({ products }) => {
 const {addToCart} = useCartContext()
   const { id, stock } = products
-  console.log("id    ", id)
+
 
   const [amount, setAmount] = useState(1)
 

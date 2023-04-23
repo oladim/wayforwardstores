@@ -36,6 +36,22 @@ const cart_reducer = (state, action) => {
     }
   }
 
+  if(action.type === "ADD_CUSTOMER_DATA"){
+    const {firstName, lastName, email, phone, address} = action.payload
+    const newItem = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+      address: address
+    }
+    return { ...state, customerDetails:  newItem }
+  }
+
+  if(action.type === "CUSTOMER"){
+    return { ...state }
+  }
+
   if (action.type === ADD_TO_WISH) {
     console.log("action payload from wish", action.payload)
     const { id, amount, products } = action.payload
@@ -55,7 +71,7 @@ const cart_reducer = (state, action) => {
 
       return { ...state, wish: tempCart }
     } else {
-      console.log("product from cart reducer", products)
+     
       const newItem = {
         id: id,
         name: products.title,

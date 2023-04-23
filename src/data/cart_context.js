@@ -15,6 +15,15 @@ const getLocalStorage = () => {
   }
 }
 
+const getCustomerData = () => {
+  let customer = localStorage.getItem('customer')
+  if (customer) {
+    return JSON.parse(localStorage.getItem('customer'))
+  } else {
+    return {}
+  }
+}
+
 const getWishList = () => {
   let wish = localStorage.getItem('wish')
   if (wish) {
@@ -30,6 +39,7 @@ const initialState = {
   total_amount: 0,
   shipping_fee: 0,
   wish: getWishList(),
+  customerDetails: getCustomerData()
 }
 
 const CartContext = React.createContext()
@@ -40,6 +50,11 @@ export const CartProvider = ({ children }) => {
   // add to cart
   const addToCart = (id, amount, products) => {
     dispatch({ type: ADD_TO_CART, payload: { id, amount, products } })
+  }
+
+  // add customer data
+  const addCustomerData = (customerData) => {
+    dispatch({type: "ADD_CUSTOMER_DATA", payload: customerData})
   }
 
   // add to WishList
@@ -75,9 +90,14 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('wish', JSON.stringify(state.wish))
   }, [state.wish])
 
+  useEffect(() => {
+    dispatch({ type: "CUSTOMER" })
+    localStorage.setItem('customer', JSON.stringify(state.customerDetails))
+  }, [state.customerDetails])
+
   return (
     <CartContext.Provider
-      value={{ ...state, addToCart, removeItem, toggleAmount, clearCart, addToWishList, toggleAmountWish }}
+      value={{ ...state, addToCart, removeItem, toggleAmount, clearCart, addToWishList, toggleAmountWish, addCustomerData }}
     >
       {children}
     </CartContext.Provider>
