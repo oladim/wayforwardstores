@@ -137,7 +137,7 @@ export default function CheakoutPage() {
                         </label>
                         <div className='input-wrapper border border-qgray-border w-full h-full overflow-hidden relative'>
                           <input
-                            placeholder="Last Name"
+                            placeholder="Emaill Address"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
@@ -157,7 +157,7 @@ export default function CheakoutPage() {
                         </label>
                         <div className='input-wrapper border border-qgray-border w-full h-full overflow-hidden relative'>
                           <input
-                            placeholder="Last Name"
+                            placeholder="Phone Number"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
@@ -195,7 +195,7 @@ export default function CheakoutPage() {
                         </label>
                         <div className='input-wrapper border border-qgray-border w-full h-full overflow-hidden relative'>
                           <input
-                            placeholder="Last Name"
+                            placeholder="Full Address"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
                             className="input-field placeholder:text-sm text-sm px-6 text-dark-gray w-full h-full font-normal bg-white focus:ring-0 focus:outline-none w-full h-[50px]"
