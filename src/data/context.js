@@ -17,7 +17,7 @@ const defaultState = {
     naira_value:0,
     country: null,
     eur_usd: 0,
-    nairavalue: 750,
+    nairavalue: 1650,
     eur_naira: 0,
     toggle: false,
        products_error: true,
@@ -57,6 +57,7 @@ const ApiProvider = ({children}) =>{
         dispatch({type: "SET_LOADING"});
         try{
             const {data} = await axios.get(url); 
+            console.log(data)
         dispatch({type: "GET_PRODUCTS_SUCCESS", payload: data})
         dispatch({type: "REMOVE_LOADING"})
         }catch(error){
@@ -171,5 +172,5 @@ export const useGlobalContext = () =>{
     return useContext(AppContext);
 }
 
-export { AppContext, ApiProvider };
+export { ApiProvider, AppContext };
 

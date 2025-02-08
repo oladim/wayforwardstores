@@ -13,6 +13,7 @@ import SallerInfo from "./SallerInfo";
 export default function SingleProductPage() {
 
   const { filtered_products } = useFilterContext();
+  // console.log(filtered_products)
 
 
 

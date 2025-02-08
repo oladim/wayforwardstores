@@ -13,7 +13,7 @@ export default function AllProductPage() {
   const { loading } = useGlobalContext();
   const { filtered_products } = useFilterContext();
 
-  console.log(filtered_products);
+  // console.log(filtered_products);
 
 
   const [filters, setFilter] = useState({
